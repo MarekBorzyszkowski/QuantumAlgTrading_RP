@@ -1,0 +1,83 @@
+\documentclass[polish,envcountsect,10pt]{article}
+\usepackage[T1]{fontenc}
+   	\usepackage{polski}
+    \usepackage{babel}
+	\usepackage{subfigure}
+	\usepackage{graphicx}
+	\usepackage{geometry}
+	\usepackage{listings}
+	\usepackage{float}
+ \usepackage{graphicx}
+
+
+	%\usepackage[hidelinks]{hyperref}
+
+\title{Wstępny pomysł na testowanie algorytmów}
+\author{inż. Paulina Brzęcka 184701 \and inż. Marek Borzyszkowski 184266 \and inż. Wojciech Baranowski 184574}
+\date{\today}
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Wstęp}
+
+Podczas pracy nad algorytmami grającymi na giełdzie, kwantowymi lub klasycznymi, przydatne będą.
+\begin{itemize}
+    \item standaryzacja uruchamiania algorytmów,
+    \item standaryzacja procesu testowania algorytmów,
+    \item standaryzacja danych udostępnianych przez algorytm.
+\end{itemize}
+
+Z powodu powyższych powstał ten dokument, dający wstępny zarys jak może ( lub nawet będzie ) wyglądać każdy z powyższych elementów.
+
+\section{Dane}
+Przed algorytmem warto zdefiniować na jakich danych będą testowane algorytmy.
+Pozwoli to uprościć definicję struktury klasy z algorytmem oraz wskazać kierunek przy decyzjach implementacyjnych.
+Z założenia dane wykorzystywane to będą:
+\begin{enumerate}
+    \item Seria odczytów indeksów giełdowych, takich jak S\&P500, WIG20 etc. Odczyty będą w odstępach dziennych.
+    \item Odczyty poszczególnych aktywów wchodzących w dany indeks ( zazwyczaj akcje spółek ). Odczyt jw. Dla danego indeksu zestaw odczytów poszczególnych aktywów będzie przechowywany w tablicy dwuwymiarowej.
+    \item Modele poszczególnych algorytmów, które wymagają trenowania przed ich użyciem. Jest to szczególnie ważne przy dalszej pracy, gdy potrzebne będzie wrócenie do modelu wcześniej przetrenowanego w celu porównania wyników.
+    \item Wyniki poszczególnych algorytmów w postaci pliku CSV zawierającego serię dat, liczby danych aktywów, łączna wartość aktywów.
+    \item Metadane o algorytmie w postaci pliku, takie jak czas działania na zadanej serii danych, czas trenowania modelu.   
+\end{enumerate}
+\section{Algorytm}
+
+Podstawą algorytmów będzie \texttt{TradingAlgorytm}. \texttt{TradingAlgorytm}  będzie klasą abstrakcyjną, po której dziedziczyć będą inne algorytmy, klasyczne i kwantowe.
+Metody abstrakcyjne jakie będzie posiadać klasa \texttt{TradingAlgorytm}:
+\begin{itemize}
+    \item \texttt{train}
+    \item\texttt{fit}
+    \item \texttt{history}
+    \item \texttt{save}
+    \item \texttt{load}
+\end{itemize}
+
+
+\subsection{\texttt{train}}
+Input: Tablica dwuwymiarowa, dla danego przedziału czasu ( w dniach ) jaka jest wartość danej akcji.\
+Output: algorytm/brak?\
+Metoda ta ma za zadanie wytrenować algorytm na wybranym zestawie akcji. 
+Ważne aby dane użyte do trenowania danego algorytmu były danymi wcześniejszymi, niż dane później wykorzystywanymi do ewaluacji danego algorytmu.
+Najlepiej jakby to były dane 4-5 letnie przed datą wybraną jako rozpoczęcie predykcji.
+Dla algorytmów niewymagających uprzedniego uczenia ( patrz MACD ), powinno zwracać nic?
+\subsection{\texttt{fit}}
+Input: Tablica dwuwymiarowa, dla danego przedziału czasu ( w dniach ) jaka jest wartość danej akcji?\
+Output: Wyniki modelu w postaci tabeli, wyżej opisane w sekcji \emph{Dane}\
+Metoda robiąca predykcje na zadanej serii krotek aktywów.
+Ważne, dane muszą być inne niż dane do trenowania.
+\subsection{\texttt{history}}
+Input: brak?\
+Output: historia procesu uczenia danego algorytmu?
+\subsection{\texttt{save}}
+Input: brak\
+Output: brak\
+Metoda zapisująca algorytm ( i może historię? ) do folderu. 
+\subsection{\texttt{load}}
+Input: Ścieżka dojścia do folderu z danym algorytmem.
+Output: Brak?
+Metoda ładująca algorytm do danej instancji algorytmu?
+
+\end{document}
