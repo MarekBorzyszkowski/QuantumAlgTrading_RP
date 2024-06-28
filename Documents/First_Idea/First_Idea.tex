@@ -57,27 +57,27 @@ Metody abstrakcyjne jakie będzie posiadać klasa \texttt{TradingAlgorytm}:
 
 
 \subsection{\texttt{train}}
-Input: Tablica dwuwymiarowa, dla danego przedziału czasu ( w dniach ) jaka jest wartość danej akcji.\
-Output: algorytm/brak?\
+Input: Tablica dwuwymiarowa, dla danego przedziału czasu ( w dniach ) jaka jest wartość danej akcji.\\
+Output: algorytm/brak?\\
 Metoda ta ma za zadanie wytrenować algorytm na wybranym zestawie akcji. 
 Ważne aby dane użyte do trenowania danego algorytmu były danymi wcześniejszymi, niż dane później wykorzystywanymi do ewaluacji danego algorytmu.
 Najlepiej jakby to były dane 4-5 letnie przed datą wybraną jako rozpoczęcie predykcji.
 Dla algorytmów niewymagających uprzedniego uczenia ( patrz MACD ), powinno zwracać nic?
 \subsection{\texttt{fit}}
-Input: Tablica dwuwymiarowa, dla danego przedziału czasu ( w dniach ) jaka jest wartość danej akcji?\
-Output: Wyniki modelu w postaci tabeli, wyżej opisane w sekcji \emph{Dane}\
+Input: Tablica dwuwymiarowa, dla danego przedziału czasu ( w dniach ) jaka jest wartość danej akcji?\\
+Output: Wyniki modelu w postaci tabeli, wyżej opisane w sekcji \emph{Dane}\\
 Metoda robiąca predykcje na zadanej serii krotek aktywów.
 Ważne, dane muszą być inne niż dane do trenowania.
 \subsection{\texttt{history}}
-Input: brak?\
+Input: brak?\\
 Output: historia procesu uczenia danego algorytmu?
 \subsection{\texttt{save}}
-Input: brak\
-Output: brak\
+Input: brak\\
+Output: brak\\
 Metoda zapisująca algorytm ( i może historię? ) do folderu. 
 \subsection{\texttt{load}}
-Input: Ścieżka dojścia do folderu z danym algorytmem.
-Output: Brak?
+Input: Ścieżka dojścia do folderu z danym algorytmem.\\
+Output: Brak?\\
 Metoda ładująca algorytm do danej instancji algorytmu?
 
 \end{document}
