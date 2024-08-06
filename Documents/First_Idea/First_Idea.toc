@@ -1,0 +1,9 @@
+\babel@toc {polish}{}\relax 
+\contentsline {section}{\numberline {1}Wstęp}{2}{}%
+\contentsline {section}{\numberline {2}Dane}{2}{}%
+\contentsline {section}{\numberline {3}Algorytm}{2}{}%
+\contentsline {subsection}{\numberline {3.1}\texttt {train}}{3}{}%
+\contentsline {subsection}{\numberline {3.2}\texttt {fit}}{3}{}%
+\contentsline {subsection}{\numberline {3.3}\texttt {history}}{3}{}%
+\contentsline {subsection}{\numberline {3.4}\texttt {save}}{3}{}%
+\contentsline {subsection}{\numberline {3.5}\texttt {load}}{3}{}%
