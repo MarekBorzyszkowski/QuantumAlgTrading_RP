@@ -80,4 +80,31 @@ Input: Ścieżka dojścia do folderu z danym algorytmem.\\
 Output: Brak?\\
 Metoda ładująca algorytm do danej instancji algorytmu?
 
+\section{Testowanie}
+Do testowania potrzebne będą dwie klasy:
+\begin{enumerate}
+    \item \texttt{AlgorithmTester} - klasa wykorzystywana do wykonywania testów na jednym przy zadanym zbiorze danych.
+    \item \texttt{ResultPresenter} - klasa wykorzystywana do prezentowania wyników w postaci wykresów zawierających dane wynikowe jednego lub więcej algorytmu.
+\end{enumerate}
+
+\subsection{\texttt{AlgorithmTester}}
+Klasa \texttt{AlgorithmTester} udostępnia następujące metody:
+\begin{itemize}
+    \item \texttt{perform\_test}:\\
+        Input: Obiekt będący instancją danego algorytmu, tablica dwuwymiarowa, dla danego przedziału czasu ( w dniach ) jaka jest wartość danej akcji.\\
+        Output: Wyniki modelu w postaci tabeli, wyżej opisane w sekcji \emph{Dane} 
+\end{itemize} 
+\subsection{\texttt{ResultPresenter}}
+Klasa \texttt{ResultPresenter} udostępnia następujące metody:
+\begin{itemize}
+    \item \texttt{print\_results\_single\_chart}:\\
+        Input: Tablica trójwymiarowa, dla każdego wyniku algorytmu, dla danego przedziału czasu ( w dniach ) jaka jest wartość danej akcji.\\
+        Output: Obraz prezentujący wyniki na pojedyńczym wykresie
+        \item \texttt{print\_results\_separate\_chart}:\\
+            Input: Tablica trójwymiarowa, dla każdego wyniku algorytmu, dla danego przedziału czasu ( w dniach ) jaka jest wartość danej akcji.\\
+            Output: Obrazy prezentujące wyniki na osobnych wykresach  
+\end{itemize} 
+
+
+
 \end{document}
