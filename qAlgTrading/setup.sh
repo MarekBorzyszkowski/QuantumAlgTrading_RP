@@ -1,8 +1,8 @@
 #!/bin/bash
-if ![ -d venv ]; then
-	echo "Start of creating venv\n"
+if [ ! -d venv ]; then
+	echo "Start of creating venv"
 	python -m venv ./venv
-	echo "venv created\nStart of installing python packages\n"
+	echo "venv created\nStart of installing python packages"
 	source ./venv/bin/activate
 	pip install -r requirements.txt
 	deactivate
