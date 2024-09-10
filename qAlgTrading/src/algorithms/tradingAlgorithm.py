@@ -21,7 +21,7 @@ class TradingAlgorithm(metaclass=abc.ABCMeta):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def fit(self, historical_data):
+    def fit(self, current_data, next_day_data):
         raise NotImplementedError
 
     @abc.abstractmethod

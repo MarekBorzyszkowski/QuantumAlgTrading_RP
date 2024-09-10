@@ -1,32 +1,27 @@
 import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
 
-from qAlgTrading.src.algorithms.classicAlgorithm import ClassicAlgorithm
-from qAlgTrading.src.algorithms.quantumAlgorithm import QuantumAlgorithm
+from qAlgTrading.src.algorithms.PcaAlgorithm import PcaAlgorithm
 from qAlgTrading.src.testingEnviroment.algorithmTester import AlgorithmTester
 from qAlgTrading.src.testingEnviroment.resultsPresenter import ResultPresenter
 
 start_date = '2005-04-02'  # data nieprzypadkowa
-num_days = 14
+num_days = 2137
 
-wig20 = pd.read_csv('../../../data/wig20/WIG20.csv')
-filtered_wig20 = wig20[wig20['Date'] >= start_date].head(num_days)
-wig20_assets = filtered_wig20[['Open', 'High', 'Low', 'Close']].values
-wig20_assets_array = np.array(wig20_assets)
+file_path = '../../../data/sp500/components/AAPL.csv'
+data = pd.read_csv(file_path)
+filtered_data = data[data['Date'] >= start_date].head(num_days)
 
-sp500 = pd.read_csv('../../../data/sp500/^SPX.csv')
-filtered_sp500 = sp500[sp500['Date'] >= start_date].head(num_days)
-sp500_assets = filtered_sp500[['Open', 'High', 'Low', 'Close']].values
-sp500_assets_array = np.array(sp500_assets)
-
-classic_algorithm = ClassicAlgorithm()
-quantum_algorithm = QuantumAlgorithm()
+pca_algorithm = PcaAlgorithm(n_components=2)
+train_data = filtered_data.iloc[:int(0.7 * len(filtered_data))]
+test_data = filtered_data.iloc[int(0.7 * len(filtered_data)):]
+pca_algorithm.train(train_data)
 
 tester = AlgorithmTester()
-tester.perform_test(classic_algorithm, wig20_assets_array)
-tester.perform_test(quantum_algorithm, sp500_assets_array)
+results = tester.perform_test(pca_algorithm, test_data)
 
-results = np.array([wig20_assets_array, sp500_assets_array])
+results = np.array([results])
 
 result_presenter = ResultPresenter()
 result_presenter.print_results_single_chart(results)

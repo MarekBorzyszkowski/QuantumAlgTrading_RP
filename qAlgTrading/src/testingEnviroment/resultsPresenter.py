@@ -15,14 +15,12 @@ class ResultPresenter:
         plt.figure(figsize=(10, 6))
 
         for i, result in enumerate(results):
-            mean_result = np.mean(result, axis=1)
-            days = np.arange(1, result.shape[0] + 1)
-            plt.plot(mean_result, label=f'Algorithm {i + 1}')
+            plt.plot(result, label=f'Algorithm {i + 1}')
 
         plt.title("Results of Algorithms")
         plt.xlabel("Days")
         plt.ylabel("Mean Value of Assets")
-        plt.xticks(days)
+        plt.grid(True)
         plt.legend()
         plt.show()
 
@@ -38,13 +36,12 @@ class ResultPresenter:
 
         for i, result in enumerate(results):
             plt.subplot(num_algorithms, 1, i + 1)
-            mean_result = np.mean(result, axis=1)
-            days = np.arange(1, result.shape[0] + 1)
-            plt.plot(mean_result)
+            plt.plot(result)
             plt.title(f"Algorithm {i + 1} Results")
             plt.xlabel("Days")
             plt.ylabel("Mean Value of Assets")
-            plt.xticks(days)
+            plt.grid(True)
+            plt.legend()
 
         plt.tight_layout()
         plt.show()

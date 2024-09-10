@@ -9,8 +9,8 @@ class QuantumAlgorithm(TradingAlgorithm):
     def train(self, historical_data):
         raise NotImplementedError
 
-    def fit(self, historical_data):
-        print(historical_data)
+    def fit(self, current_data, next_day_data):
+        raise NotImplementedError
 
     def history(self):
         raise NotImplementedError
