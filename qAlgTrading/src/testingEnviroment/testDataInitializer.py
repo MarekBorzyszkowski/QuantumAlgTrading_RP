@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from matplotlib import pyplot as plt
 
 from qAlgTrading.src.algorithms.PcaAlgorithm import PcaAlgorithm
 from qAlgTrading.src.algorithms.SvmAlgorithm import SvmAlgorithm

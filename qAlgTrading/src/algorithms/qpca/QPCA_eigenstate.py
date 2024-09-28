@@ -4,9 +4,8 @@ import numpy as np
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
 from qiskit import transpile
 from qiskit.circuit.library import CU3Gate, CPhaseGate
-from qiskit.providers.basic_provider import BasicProvider
-from qiskit.visualization import plot_histogram
 from qiskit_aer import Aer
+
 
 # from qiskit.tools.monitor import job_monitor
 def qpca_eigenstate():
