@@ -7,8 +7,8 @@ from qAlgTrading.src.algorithms.SvmAlgorithm import SvmAlgorithm
 from qAlgTrading.src.testingEnviroment.algorithmTester import AlgorithmTester
 from qAlgTrading.src.testingEnviroment.resultsPresenter import ResultPresenter
 
-start_date = '2022-01-01'
-num_days = 100
+start_date = '2003-01-01'
+num_days = 10000
 
 file_path = '../../../data/wig20/components/PKO.csv'
 data = pd.read_csv(file_path)
