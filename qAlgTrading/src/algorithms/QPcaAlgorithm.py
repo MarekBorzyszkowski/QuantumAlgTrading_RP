@@ -1,3 +1,4 @@
+from qAlgTrading.src.algorithms.qpca.QPCA import QPCA
 from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
@@ -5,30 +6,25 @@ from sklearn.preprocessing import StandardScaler
 from qAlgTrading.src.constants import FEATURES
 
 
-class PcaAlgorithm(TradingAlgorithm):
-    def __init__(self, n_components=2):
-        self.pca = PCA(n_components=n_components)
+class QPcaAlgorithm(TradingAlgorithm):
+    def __init__(self):
+        self.qpca = QPCA()
         self.scaler = StandardScaler()
-        self.pca_fitted = False
 
     def train(self, historical_data):
         features = ['Open', 'High', 'Low', 'Close', 'Volume']
         data = historical_data[FEATURES]
         scaled_data = self.scaler.fit_transform(data)
-        self.pca.fit(scaled_data)
-        self.pca_fitted = True
+        self.qpca.fit(scaled_data)
 
     def fit(self, current_data, next_day_data):
-        if not self.pca_fitted:
-            raise ValueError("Model PCA not trained.")
-
         current_scaled = self.scaler.transform([current_data])
         next_scaled = self.scaler.transform([next_day_data])
 
-        current_pca = self.pca.transform(current_scaled)
-        next_pca = self.pca.transform(next_scaled)
+        current_pca = self.qpca.transform(current_scaled)
+        next_pca = self.qpca.transform(next_scaled)
 
-        if next_pca[0][0] > current_pca[0][0]:
+        if next_pca[0] > current_pca[0]:
             return "buy"
         else:
             return "sell"

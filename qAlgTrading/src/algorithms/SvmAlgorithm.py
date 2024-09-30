@@ -3,6 +3,9 @@ from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 
+from qAlgTrading.src.constants import FEATURES
+
+
 class SvmAlgorithm(TradingAlgorithm):
     def __init__(self, kernel='linear'):
         self.svm = SVC(kernel=kernel)
@@ -19,8 +22,8 @@ class SvmAlgorithm(TradingAlgorithm):
             self.labels = self.prepare_labels(historical_data)
 
         features = ['Open', 'High', 'Low', 'Volume']
-        data = historical_data[features]
-        self.features = features
+        data = historical_data[FEATURES]
+        self.features = FEATURES
         scaled_data = self.scaler.fit_transform(data)
 
         self.svm.fit(scaled_data, self.labels)
@@ -35,11 +38,10 @@ class SvmAlgorithm(TradingAlgorithm):
 
         current_prediction = self.svm.predict(current_scaled)
         next_prediction = self.svm.predict(next_scaled)
-
         if next_prediction[0] > current_prediction[0]:
-            return "buy", current_prediction[0]
+            return "buy"
         else:
-            return "sell", current_prediction[0]
+            return "sell"
 
     def history(self):
         raise NotImplementedError

@@ -29,8 +29,8 @@ class AlgorithmTester:
         """
         portfolio_value = []
         for i in range(len(data) - 1):
-            current_day = data.iloc[i][FEATURES[:-1]].values
-            next_day = data.iloc[i + 1][FEATURES[:-1]].values
+            current_day = data.iloc[i][FEATURES].values
+            next_day = data.iloc[i + 1][FEATURES].values
             current_price = data.iloc[i]['Close']
             decision = algorithm.fit(current_day, next_day)
             self.trade(current_price, decision)
