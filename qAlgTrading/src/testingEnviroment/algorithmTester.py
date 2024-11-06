@@ -1,4 +1,7 @@
+from tqdm import tqdm
+
 from qAlgTrading.src.constants import FEATURES
+import pandas as pd
 
 
 class AlgorithmTester:
@@ -28,9 +31,9 @@ class AlgorithmTester:
         :return: Wyniki modelu w postaci tabeli (numpy array) zawierającej predykcje algorytmu.
         """
         portfolio_value = []
-        for i in range(len(data) - 1):
-            current_day = data.iloc[i][FEATURES].values
-            next_day = data.iloc[i + 1][FEATURES].values
+        for i in tqdm(range(len(data) - 1)):
+            current_day = pd.DataFrame(data.iloc[i][FEATURES]).transpose()
+            next_day = pd.DataFrame(data.iloc[i + 1][FEATURES]).transpose()
             current_price = data.iloc[i]['Close']
             decision = algorithm.fit(current_day, next_day)
             self.trade(current_price, decision)

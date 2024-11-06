@@ -18,8 +18,8 @@ class QPcaAlgorithm(TradingAlgorithm):
         self.qpca.fit(scaled_data)
 
     def fit(self, current_data, next_day_data):
-        current_scaled = self.scaler.transform([current_data])
-        next_scaled = self.scaler.transform([next_day_data])
+        current_scaled = self.scaler.transform(current_data)
+        next_scaled = self.scaler.transform(next_day_data)
 
         current_pca = self.qpca.transform(current_scaled)
         next_pca = self.qpca.transform(next_scaled)

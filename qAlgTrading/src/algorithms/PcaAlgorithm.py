@@ -12,7 +12,6 @@ class PcaAlgorithm(TradingAlgorithm):
         self.pca_fitted = False
 
     def train(self, historical_data):
-        features = ['Open', 'High', 'Low', 'Close', 'Volume']
         data = historical_data[FEATURES]
         scaled_data = self.scaler.fit_transform(data)
         self.pca.fit(scaled_data)
@@ -22,8 +21,8 @@ class PcaAlgorithm(TradingAlgorithm):
         if not self.pca_fitted:
             raise ValueError("Model PCA not trained.")
 
-        current_scaled = self.scaler.transform([current_data])
-        next_scaled = self.scaler.transform([next_day_data])
+        current_scaled = self.scaler.transform(current_data)
+        next_scaled = self.scaler.transform(next_day_data)
 
         current_pca = self.pca.transform(current_scaled)
         next_pca = self.pca.transform(next_scaled)

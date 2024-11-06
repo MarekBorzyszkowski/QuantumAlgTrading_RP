@@ -33,8 +33,8 @@ class SvmAlgorithm(TradingAlgorithm):
         if not self.svm_fitted:
             raise ValueError("Model SVM not trained.")
 
-        current_scaled = self.scaler.transform([current_data])
-        next_scaled = self.scaler.transform([next_day_data])
+        current_scaled = self.scaler.transform(current_data)
+        next_scaled = self.scaler.transform(next_day_data)
 
         current_prediction = self.svm.predict(current_scaled)
         next_prediction = self.svm.predict(next_scaled)
