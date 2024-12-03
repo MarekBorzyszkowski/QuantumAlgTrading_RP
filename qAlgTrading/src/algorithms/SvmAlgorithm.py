@@ -29,19 +29,8 @@ class SvmAlgorithm(TradingAlgorithm):
         self.svm.fit(scaled_data, self.labels)
         self.svm_fitted = True
 
-    def fit(self, current_data, next_day_data):
-        if not self.svm_fitted:
-            raise ValueError("Model SVM not trained.")
-
-        current_scaled = self.scaler.transform(current_data)
-        next_scaled = self.scaler.transform(next_day_data)
-
-        current_prediction = self.svm.predict(current_scaled)
-        next_prediction = self.svm.predict(next_scaled)
-        if next_prediction[0] > current_prediction[0]:
-            return "buy"
-        else:
-            return "sell"
+    def fit(self, historical_data):
+        return NotImplementedError
 
     def history(self):
         raise NotImplementedError

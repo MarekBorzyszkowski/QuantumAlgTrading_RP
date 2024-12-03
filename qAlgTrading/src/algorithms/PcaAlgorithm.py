@@ -17,20 +17,8 @@ class PcaAlgorithm(TradingAlgorithm):
         self.pca.fit(scaled_data)
         self.pca_fitted = True
 
-    def fit(self, current_data, next_day_data):
-        if not self.pca_fitted:
-            raise ValueError("Model PCA not trained.")
-
-        current_scaled = self.scaler.transform(current_data)
-        next_scaled = self.scaler.transform(next_day_data)
-
-        current_pca = self.pca.transform(current_scaled)
-        next_pca = self.pca.transform(next_scaled)
-
-        if next_pca[0][0] > current_pca[0][0]:
-            return "buy"
-        else:
-            return "sell"
+    def fit(self, historical_data):
+        return NotImplementedError
 
     def history(self):
         raise NotImplementedError
