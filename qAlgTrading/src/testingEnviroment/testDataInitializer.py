@@ -16,21 +16,22 @@ data = pd.read_csv(file_path)
 filtered_data = data[data['Date'] >= start_date].head(num_days)
 
 pca_algorithm = PcaAlgorithm(n_components=2)
-svm_algorithm = SvmAlgorithm()
-qpca_algorithm = QPcaAlgorithm()
+# svm_algorithm = SvmAlgorithm()
+# qpca_algorithm = QPcaAlgorithm()
 train_data = filtered_data.iloc[:int(0.7 * len(filtered_data))]
 test_data = filtered_data.iloc[int(0.7 * len(filtered_data)):]
 pca_algorithm.train(train_data)
-svm_algorithm.train(train_data)
-qpca_algorithm.train(train_data)
+# svm_algorithm.train(train_data)
+# qpca_algorithm.train(train_data)
 
 pca_tester = AlgorithmTester()
-svm_tester = AlgorithmTester()
-qpca_tester = AlgorithmTester()
+# svm_tester = AlgorithmTester()
+# qpca_tester = AlgorithmTester()
 pca_results = pca_tester.perform_test(pca_algorithm, test_data)
-svm_results = svm_tester.perform_test(svm_algorithm, test_data)
-qpca_results = qpca_tester.perform_test(qpca_algorithm, test_data)
-results = np.array([pca_results, svm_results, qpca_results])
+# svm_results = svm_tester.perform_test(svm_algorithm, test_data)
+# qpca_results = qpca_tester.perform_test(qpca_algorithm, test_data)
+test_data = test_data.iloc[5:]['Close']
+results = np.array([test_data, pca_results])
 
 result_presenter = ResultPresenter()
 result_presenter.print_results_single_chart(results)

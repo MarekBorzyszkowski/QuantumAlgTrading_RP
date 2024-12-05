@@ -30,13 +30,12 @@ class AlgorithmTester:
                      Wiersze reprezentują różne dni, a kolumny różne aktywa.
         :return: Wyniki modelu w postaci tabeli (numpy array) zawierającej predykcje algorytmu.
         """
-        portfolio_value = []
-        for i in tqdm(range(len(data) - 1)):
-            current_day = pd.DataFrame(data.iloc[i][FEATURES]).transpose()
-            next_day = pd.DataFrame(data.iloc[i + 1][FEATURES]).transpose()
-            current_price = data.iloc[i]['Close']
-            decision = algorithm.fit(current_day, next_day)
-            self.trade(current_price, decision)
-            portfolio_value.append(self.update_portfolio_value(current_price))
+        predictions = []
 
-        return portfolio_value
+        for i in tqdm(range(5, len(data))):
+            past_five_days = data.iloc[i-5:i][FEATURES]
+            current_day = data.iloc[i][FEATURES]
+            predicted_close = algorithm.fit(past_five_days)
+            predictions.append(predicted_close)
+
+        return predictions
