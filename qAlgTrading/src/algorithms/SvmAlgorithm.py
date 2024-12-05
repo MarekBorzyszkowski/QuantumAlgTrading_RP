@@ -1,36 +1,47 @@
+import numpy as np
 import pandas as pd
 from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
-from sklearn.svm import SVC
+from sklearn.svm import SVC, SVR
 from sklearn.preprocessing import StandardScaler
 
 from qAlgTrading.src.constants import FEATURES
 
+# https://github.com/772003pranav/Stock-Price-Prediction-using-LSTM-and-SVM
 
 class SvmAlgorithm(TradingAlgorithm):
-    def __init__(self, kernel='linear'):
-        self.svm = SVC(kernel=kernel)
+    def __init__(self):
         self.scaler = StandardScaler()
-        self.svm_fitted = False
-        self.labels = None
-        self.features = None
-
-    def set_labels(self, labels):
-        self.labels = labels
+        self.model = SVR()
+        self.history_data = None
 
     def train(self, historical_data):
-        if self.labels is None:
-            self.labels = self.prepare_labels(historical_data)
+        if 'Close' not in historical_data.columns:
+            raise ValueError("Historical data must contain column: 'Close'")
 
-        features = ['Open', 'High', 'Low', 'Volume']
-        data = historical_data[FEATURES]
-        self.features = FEATURES
-        scaled_data = self.scaler.fit_transform(data)
+        close_prices = historical_data['Close'].values
 
-        self.svm.fit(scaled_data, self.labels)
-        self.svm_fitted = True
+        X = self._prepare_features(close_prices)
+        y = close_prices[len(close_prices) - len(X):]
+
+        X_scaled = self.scaler.fit_transform(X)
+
+        self.model.fit(X_scaled, y)
+
+        self.history_data = historical_data
 
     def fit(self, historical_data):
-        return NotImplementedError
+        if 'Close' not in historical_data.columns:
+            raise ValueError("Recent data must contain column: 'Close'")
+
+        if len(historical_data) < 5:
+            raise ValueError("Insufficient data for prediction.")
+
+        close_prices = historical_data['Close'].values
+        X = self._prepare_features_to_fit(close_prices)
+
+        X_scaled = self.scaler.transform(X)
+
+        return self.model.predict(X_scaled)[-1]
 
     def history(self):
         raise NotImplementedError
@@ -41,13 +52,14 @@ class SvmAlgorithm(TradingAlgorithm):
     def load(self, directory: str):
         raise NotImplementedError
 
-    def prepare_labels(self, historical_data):
-        labels = []
-        for i in range(0, len(historical_data)):
-            if historical_data['Close'].iloc[i] > historical_data['Close'].iloc[i - 1]:
-                labels.append(1)  # Kupno
-            elif historical_data['Close'].iloc[i] < historical_data['Close'].iloc[i - 1]:
-                labels.append(-1)  # Sprzedaż
-            else:
-                labels.append(0)  # Brak akcji (lub neutralne)
-        return labels
+    def _prepare_features(self, close_prices):
+        X = []
+        for i in range(len(close_prices) - 5):
+            X.append(close_prices[i:i + 5])
+        return np.array(X)
+
+    def _prepare_features_to_fit(self, close_prices):
+        X = []
+        for i in range(len(close_prices)):
+            X.append(close_prices[i])
+        return np.array(X).reshape(-1, 5)
