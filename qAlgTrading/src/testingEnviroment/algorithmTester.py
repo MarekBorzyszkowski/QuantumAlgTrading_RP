@@ -1,8 +1,6 @@
 from tqdm import tqdm
 
 from qAlgTrading.src.constants import FEATURES
-import pandas as pd
-
 
 class AlgorithmTester:
     def __init__(self, initial_cash=10000):
@@ -31,11 +29,8 @@ class AlgorithmTester:
         :return: Wyniki modelu w postaci tabeli (numpy array) zawierającej predykcje algorytmu.
         """
         predictions = []
-
         for i in tqdm(range(5, len(data))):
             past_five_days = data.iloc[i-5:i][FEATURES]
-            current_day = data.iloc[i][FEATURES]
             predicted_close = algorithm.fit(past_five_days)
             predictions.append(predicted_close)
-
         return predictions

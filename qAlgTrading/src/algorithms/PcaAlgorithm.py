@@ -30,10 +30,10 @@ class PcaAlgorithm(TradingAlgorithm):
         if not set(FEATURES).issubset(historical_data.columns):
             raise ValueError(f"Recent data must contain columns: {FEATURES}")
 
-        if len(historical_data) < len(FEATURES):
+        if len(historical_data) < len(FEATURES): #Do sprawdzenia
             raise ValueError("Insufficient data for prediction.")
 
-        X = historical_data[FEATURES[:-1]].values
+        X = historical_data[FEATURES[:-1]].values # Do sprawdzenia
 
         X_reduced = self.pca.transform(X)
 
