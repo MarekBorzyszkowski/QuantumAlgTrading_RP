@@ -13,7 +13,9 @@ class TradingAlgorithm(metaclass=abc.ABCMeta):
                 hasattr(subclass, 'save') and
                 callable(subclass.save) and
                 hasattr(subclass, 'load') and
-                callable(subclass.load)
+                callable(subclass.load) and
+                hasattr(subclass, 'name') and
+                callable(subclass.name)
                 or NotImplemented)
 
     @abc.abstractmethod
@@ -34,4 +36,8 @@ class TradingAlgorithm(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def load(self, directory: str):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def name(self):
         raise NotImplementedError

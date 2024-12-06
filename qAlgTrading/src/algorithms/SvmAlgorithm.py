@@ -51,6 +51,9 @@ class SvmAlgorithm(TradingAlgorithm):
     def load(self, directory: str):
         raise NotImplementedError
 
+    def name(self):
+        return "Svm"
+
     def _prepare_features(self, close_prices):
         X = []
         for i in range(len(close_prices) - self.history_length):
