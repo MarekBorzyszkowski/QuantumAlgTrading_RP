@@ -28,7 +28,7 @@ print("QPCA initialized")
 qsvm_algorithm = QSvmAlgorithm()
 print("QSVM initialized")
 print("End of initialization")
-algorithms = [pca_algorithm, svm_algorithm]
+algorithms = [pca_algorithm, svm_algorithm, qpca_algorithm, qsvm_algorithm]
 
 train_data = filtered_data.iloc[:int(train_data_precent * len(filtered_data))]
 test_data = filtered_data.iloc[int(train_data_precent * len(filtered_data)):]
@@ -54,5 +54,4 @@ print("Predictions finished")
 result_presenter = ResultPresenter()
 result_presenter.print_results_single_chart(results)
 result_presenter.print_results_separate_chart(results)
-plotParams = {"title": "Test data and predicted data difference", "ylabel": "Price difference"}
-result_presenter.print_results_single_chart(results_diff, params=plotParams)
+result_presenter.print_results_single_chart(results_diff, title="Test data and predicted data difference", ylabel="Price difference")
