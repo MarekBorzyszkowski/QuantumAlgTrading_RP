@@ -4,7 +4,6 @@ from sklearn.svm import SVR
 
 from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
 
-# https://github.com/772003pranav/Stock-Price-Prediction-using-LSTM-and-SVM
 
 class SvmAlgorithm(TradingAlgorithm):
     def __init__(self, history_length=5, kernel='rbf'):

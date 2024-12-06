@@ -5,8 +5,6 @@ from sklearn.linear_model import LinearRegression
 from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
 
 
-# po prostu stąd: https://stackoverflow.com/questions/41866841/using-pca-on-linear-regression
-
 class PcaAlgorithm(TradingAlgorithm):
     def __init__(self, history_length=5):
         self.history_length = history_length

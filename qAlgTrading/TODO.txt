@@ -1,0 +1,16 @@
+1. Obliczanie błędu :
+    bezwzględnego:
+        maksymalnego i średniego
+    względnego:
+        maksymalnego i średniego
+    średniokwadratowego
+
+2. dodanie json'a z parametrami początkowymi
+3. wybieranie odpowiednich danych z listy dostępnych (s&p i wig20)
+4. zapisywanie wykresów
+5. zapisywanie informacji o długości uczenia algorytmu
+6. Tworzenie wykresów:
+    każdy z osobna algorytm
+    Wszystkie na jednym
+    para danych na wykresie oryginalne dane + predykcja nadego algorytmu
+7. Zapisywanie modelu?
