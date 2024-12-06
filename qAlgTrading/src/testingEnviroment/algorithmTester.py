@@ -2,22 +2,12 @@ from tqdm import tqdm
 
 from qAlgTrading.src.constants import FEATURES
 
+
 class AlgorithmTester:
-    def __init__(self, initial_cash=10000):
+    def __init__(self, initial_cash=10000, history_length=5):
         self.cash = initial_cash
         self.shares = 0
-
-    def trade(self, price, decision):
-        if decision == "buy" and self.cash >= price:
-            self.shares += 1
-            self.cash -= price
-        elif decision == "sell" and self.shares > 0:
-            self.shares -= 1
-            self.cash += price
-
-    def update_portfolio_value(self, current_price):
-        total_value = self.cash + (self.shares * current_price)
-        return total_value
+        self.history_length = history_length
 
     def perform_test(self, algorithm, data):
         """
@@ -29,8 +19,8 @@ class AlgorithmTester:
         :return: Wyniki modelu w postaci tabeli (numpy array) zawierającej predykcje algorytmu.
         """
         predictions = []
-        for i in tqdm(range(5, len(data))):
-            past_five_days = data.iloc[i-5:i][FEATURES]
+        for i in tqdm(range(self.history_length, len(data))):
+            past_five_days = data.iloc[i - self.history_length:i][FEATURES]
             predicted_close = algorithm.fit(past_five_days)
             predictions.append(predicted_close)
         return predictions

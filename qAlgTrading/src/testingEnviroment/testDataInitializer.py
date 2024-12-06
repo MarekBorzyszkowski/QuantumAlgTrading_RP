@@ -10,16 +10,19 @@ from qAlgTrading.src.testingEnviroment.resultsPresenter import ResultPresenter
 
 start_date = '2003-01-01'
 num_days = 10000
+train_data_precent = 0.8
 
 file_path = '../../../data/wig20/components/PKO.csv'
 data = pd.read_csv(file_path)
 filtered_data = data[data['Date'] >= start_date].head(num_days)
 
-pca_algorithm = PcaAlgorithm(n_components=2)
+
+
+pca_algorithm = PcaAlgorithm()
 svm_algorithm = SvmAlgorithm()
 # qpca_algorithm = QPcaAlgorithm()
-train_data = filtered_data.iloc[:int(0.7 * len(filtered_data))]
-test_data = filtered_data.iloc[int(0.7 * len(filtered_data)):]
+train_data = filtered_data.iloc[:int(train_data_precent * len(filtered_data))]
+test_data = filtered_data.iloc[int(train_data_precent * len(filtered_data)):]
 pca_algorithm.train(train_data)
 svm_algorithm.train(train_data)
 # qpca_algorithm.train(train_data)

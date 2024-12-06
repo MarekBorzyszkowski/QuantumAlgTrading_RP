@@ -1,18 +1,17 @@
 import numpy as np
-import pandas as pd
-from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
-from sklearn.svm import SVC, SVR
 from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVR
 
-from qAlgTrading.src.constants import FEATURES
+from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
 
 # https://github.com/772003pranav/Stock-Price-Prediction-using-LSTM-and-SVM
 
 class SvmAlgorithm(TradingAlgorithm):
-    def __init__(self):
+    def __init__(self, history_length=5):
         self.scaler = StandardScaler()
         self.model = SVR()
         self.history_data = None
+        self.history_length = history_length
 
     def train(self, historical_data):
         if 'Close' not in historical_data.columns:
@@ -33,7 +32,7 @@ class SvmAlgorithm(TradingAlgorithm):
         if 'Close' not in historical_data.columns:
             raise ValueError("Recent data must contain column: 'Close'")
 
-        if len(historical_data) < 5:
+        if len(historical_data) < self.history_length:
             raise ValueError("Insufficient data for prediction.")
 
         close_prices = historical_data['Close'].values
@@ -41,7 +40,7 @@ class SvmAlgorithm(TradingAlgorithm):
 
         X_scaled = self.scaler.transform(X)
 
-        return self.model.predict(X_scaled)[-1]
+        return self.model.predict(X_scaled).item()
 
     def history(self):
         raise NotImplementedError
@@ -54,12 +53,12 @@ class SvmAlgorithm(TradingAlgorithm):
 
     def _prepare_features(self, close_prices):
         X = []
-        for i in range(len(close_prices) - 5):
-            X.append(close_prices[i:i + 5])
+        for i in range(len(close_prices) - self.history_length):
+            X.append(close_prices[i:i + self.history_length])
         return np.array(X)
 
     def _prepare_features_to_fit(self, close_prices):
         X = []
         for i in range(len(close_prices)):
             X.append(close_prices[i])
-        return np.array(X).reshape(-1, 5)
+        return np.array(X).reshape(-1, self.history_length)

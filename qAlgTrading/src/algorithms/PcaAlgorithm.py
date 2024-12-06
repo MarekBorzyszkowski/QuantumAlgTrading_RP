@@ -3,14 +3,14 @@ from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
 
 from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
-from qAlgTrading.src.constants import FEATURES
+
 
 # po prostu stąd: https://stackoverflow.com/questions/41866841/using-pca-on-linear-regression
 
 class PcaAlgorithm(TradingAlgorithm):
-    def __init__(self, n_components=5):
-        self.n_components = n_components
-        self.pca = PCA(n_components=n_components)
+    def __init__(self, history_length=5):
+        self.history_length = history_length
+        self.pca = PCA(n_components=history_length)
         self.model = LinearRegression()
         self.history_data = None
 
@@ -21,7 +21,7 @@ class PcaAlgorithm(TradingAlgorithm):
         close_prices = historical_data['Close'].values
 
         X = self._prepare_features(close_prices)
-        y = close_prices[self.n_components:]
+        y = close_prices[self.history_length:]
 
         X_reduced = self.pca.fit_transform(X)
 
@@ -33,14 +33,14 @@ class PcaAlgorithm(TradingAlgorithm):
         if 'Close' not in historical_data.columns:
             raise ValueError("Recent data must contain column: 'Close'")
 
-        if len(historical_data) < self.n_components + 1: #Do sprawdzenia
+        if len(historical_data) < self.history_length: #Do sprawdzenia
             raise ValueError("Insufficient data for prediction.")
 
-        X = self._prepare_features(historical_data['Close'].values) #Do sprawdzenia
+        X = self._prepare_features_to_fit(historical_data['Close'].values) #Do sprawdzenia
 
         X_reduced = self.pca.transform(X)
 
-        return self.model.predict(X_reduced)[-1]
+        return self.model.predict(X_reduced).item()
 
     def history(self):
         raise NotImplementedError
@@ -53,6 +53,12 @@ class PcaAlgorithm(TradingAlgorithm):
 
     def _prepare_features(self, close_prices):
         X = []
-        for i in range(len(close_prices) - self.n_components):
-            X.append(close_prices[i:i + self.n_components])
+        for i in range(len(close_prices) - self.history_length):
+            X.append(close_prices[i:i + self.history_length])
         return np.array(X)
+
+    def _prepare_features_to_fit(self, close_prices):
+        X = []
+        for i in range(len(close_prices)):
+            X.append(close_prices[i])
+        return np.array(X).reshape(-1, self.history_length)
