@@ -1,13 +1,11 @@
 import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib.pyplot import ylabel
 
 
 class ResultPresenter:
     def __init__(self):
         pass
 
-    def print_results_single_chart(self, results, params={"title": "Results of Algorithms", "ylabel": "Predicted price"}):
+    def print_results_single_chart(self, results, title="Results of Algorithms", ylabel="Predicted price"):
         """
         Prezentuje wyniki algorytmu na pojedynczym wykresie.
 
@@ -19,14 +17,14 @@ class ResultPresenter:
         for name, result in results.items():
             plt.plot(result, label=name)
 
-        plt.title(params.get("title"))
+        plt.title(title)
         plt.xlabel("Days")
-        plt.ylabel(params.get("ylabel"))
+        plt.ylabel(ylabel)
         plt.grid(True)
         plt.legend()
         plt.show()
 
-    def print_results_separate_chart(self, results):
+    def print_results_separate_chart(self, results, title="Results", ylabel="Predicted price"):
         """
         Prezentuje wyniki algorytmów na osobnych wykresach.
 
@@ -39,9 +37,9 @@ class ResultPresenter:
         for i, (name, result) in enumerate(results.items()):
             plt.subplot(num_algorithms, 1, i + 1)
             plt.plot(result)
-            plt.title(f"{name} Results")
+            plt.title(f"{name}: {title}")
             plt.xlabel("Days")
-            plt.ylabel("Predicted price")
+            plt.ylabel(ylabel)
             plt.grid(True)
 
         plt.tight_layout()
