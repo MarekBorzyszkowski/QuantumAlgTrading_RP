@@ -1,25 +1,27 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.pyplot import ylabel
+
 
 class ResultPresenter:
     def __init__(self):
         pass
 
-    def print_results_single_chart(self, results):
+    def print_results_single_chart(self, results, params={"title": "Results of Algorithms", "ylabel": "Predicted price"}):
         """
         Prezentuje wyniki algorytmu na pojedynczym wykresie.
 
-        :param results: Tablica trójwymiarowa (numpy array) z wynikami algorytmów.
-                        Wymiary tablicy: [liczba_algorytmów, liczba_dni, liczba_aktywow].
+        :param results: Słownik, gdzie kluczem jest nazwa algorytmu, a wartością lista wyników.
+                        {'Algorithm Name': [wyniki]}
         """
         plt.figure(figsize=(10, 6))
 
-        for i, result in enumerate(results):
-            plt.plot(result, label=f'Algorithm {i + 1}')
+        for name, result in results.items():
+            plt.plot(result, label=name)
 
-        plt.title("Results of Algorithms")
+        plt.title(params.get("title"))
         plt.xlabel("Days")
-        plt.ylabel("Mean Value of Assets")
+        plt.ylabel(params.get("ylabel"))
         plt.grid(True)
         plt.legend()
         plt.show()
@@ -28,21 +30,19 @@ class ResultPresenter:
         """
         Prezentuje wyniki algorytmów na osobnych wykresach.
 
-        :param results: Tablica trójwymiarowa (numpy array) z wynikami algorytmów.
-                        Wymiary tablicy: [liczba_algorytmów, liczba_dni, liczba_aktywow].
+        :param results: Słownik, gdzie kluczem jest nazwa algorytmu, a wartością lista wyników.
+                        {'Algorithm Name': [wyniki]}
         """
-        num_algorithms = results.shape[0]
+        num_algorithms = len(results)
         plt.figure(figsize=(10, 6 * num_algorithms))
 
-        for i, result in enumerate(results):
+        for i, (name, result) in enumerate(results.items()):
             plt.subplot(num_algorithms, 1, i + 1)
             plt.plot(result)
-            plt.title(f"Algorithm {i + 1} Results")
+            plt.title(f"{name} Results")
             plt.xlabel("Days")
-            plt.ylabel("Mean Value of Assets")
+            plt.ylabel("Predicted price")
             plt.grid(True)
-            plt.legend()
 
         plt.tight_layout()
         plt.show()
-
