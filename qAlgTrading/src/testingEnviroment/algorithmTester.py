@@ -4,9 +4,7 @@ from qAlgTrading.src.constants import FEATURES
 
 
 class AlgorithmTester:
-    def __init__(self, initial_cash=10000, history_length=5):
-        self.cash = initial_cash
-        self.shares = 0
+    def __init__(self, history_length=5):
         self.history_length = history_length
 
     def perform_test(self, algorithm, data):

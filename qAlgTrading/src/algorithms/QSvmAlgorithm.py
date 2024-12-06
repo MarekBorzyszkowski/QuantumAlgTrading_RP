@@ -1,15 +1,13 @@
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVR
-
+from qiskit_machine_learning.algorithms import QSVR
 from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
 
-# https://github.com/772003pranav/Stock-Price-Prediction-using-LSTM-and-SVM
 
-class SvmAlgorithm(TradingAlgorithm):
-    def __init__(self, history_length=5, kernel='rbf'):
+class QSvmAlgorithm(TradingAlgorithm):
+    def __init__(self, history_length=5):
         self.scaler = StandardScaler()
-        self.model = SVR(kernel=kernel)
+        self.model = QSVR()
         self.history_data = None
         self.history_length = history_length
 

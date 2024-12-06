@@ -4,12 +4,13 @@ import pandas as pd
 
 from qAlgTrading.src.algorithms.PcaAlgorithm import PcaAlgorithm
 from qAlgTrading.src.algorithms.QPcaAlgorithm import QPcaAlgorithm
+from qAlgTrading.src.algorithms.QSvmAlgorithm import QSvmAlgorithm
 from qAlgTrading.src.algorithms.SvmAlgorithm import SvmAlgorithm
 from qAlgTrading.src.testingEnviroment.algorithmTester import AlgorithmTester
 from qAlgTrading.src.testingEnviroment.resultsPresenter import ResultPresenter
 
 start_date = '2003-01-01'
-num_days = 10000
+num_days = 100
 train_data_precent = 0.8
 
 file_path = '../../../data/wig20/components/PKO.csv'
@@ -17,25 +18,35 @@ data = pd.read_csv(file_path)
 filtered_data = data[data['Date'] >= start_date].head(num_days)
 
 
-
+print("Start of algorithm initialization")
 pca_algorithm = PcaAlgorithm()
+print("PCA initialized")
 svm_algorithm = SvmAlgorithm()
+print("SVM initialized")
 # qpca_algorithm = QPcaAlgorithm()
+qsvm_algorithm = QSvmAlgorithm()
+print("QSVM initialized")
+print("End of initialization")
+algorithms = [pca_algorithm, svm_algorithm, qsvm_algorithm]
+
 train_data = filtered_data.iloc[:int(train_data_precent * len(filtered_data))]
 test_data = filtered_data.iloc[int(train_data_precent * len(filtered_data)):]
-pca_algorithm.train(train_data)
-svm_algorithm.train(train_data)
-# qpca_algorithm.train(train_data)
+print("Training initialized")
+for algorithm in algorithms:
+    algorithm.train(train_data)
+print("Training finished")
 
-pca_tester = AlgorithmTester()
-svm_tester = AlgorithmTester()
-# qpca_tester = AlgorithmTester()
-pca_results = pca_tester.perform_test(pca_algorithm, test_data)
-svm_results = svm_tester.perform_test(svm_algorithm, test_data)
-# qpca_results = qpca_tester.perform_test(qpca_algorithm, test_data)
-test_data = test_data.iloc[5:]['Close']
-results = np.array([test_data, pca_results, svm_results])
-results_diff = np.array([test_data - pca_results, test_data - svm_results])
+algorithm_tester = AlgorithmTester()
+algorithm_results = []
+print("Predictions started")
+for algorithm in algorithms:
+    algorithm_results.append(algorithm_tester.perform_test(algorithm, test_data))
+print("Predictions finished")
+
+test_data_closed = test_data.iloc[5:]['Close']
+
+results = np.add(np.array([test_data_closed]), algorithm_results)
+results_diff = np.array([test_data_closed - algorithm_result for algorithm_result in algorithm_results])
 
 result_presenter = ResultPresenter()
 result_presenter.print_results_single_chart(results)
