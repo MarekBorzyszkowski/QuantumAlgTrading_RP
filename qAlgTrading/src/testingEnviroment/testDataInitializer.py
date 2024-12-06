@@ -30,29 +30,26 @@ print("QSVM initialized")
 print("End of initialization")
 algorithms = [pca_algorithm, svm_algorithm, qpca_algorithm, qsvm_algorithm]
 
+train_data = filtered_data.iloc[:int(train_data_precent * len(filtered_data))]
+test_data = filtered_data.iloc[int(train_data_precent * len(filtered_data)):]
+print("Training initialized")
 for algorithm in algorithms:
-    algorithm.name()
+    algorithm.train(train_data)
+print("Training finished")
 
-# train_data = filtered_data.iloc[:int(train_data_precent * len(filtered_data))]
-# test_data = filtered_data.iloc[int(train_data_precent * len(filtered_data)):]
-# print("Training initialized")
-# for algorithm in algorithms:
-#     algorithm.train(train_data)
-# print("Training finished")
-#
-# algorithm_tester = AlgorithmTester()
-# algorithm_results = []
-# print("Predictions started")
-# for algorithm in algorithms:
-#     algorithm_results.append(algorithm_tester.perform_test(algorithm, test_data))
-# print("Predictions finished")
-#
-# test_data_closed = test_data.iloc[5:]['Close']
-#
-# results = np.add(np.array([test_data_closed]), algorithm_results)
-# results_diff = np.array([test_data_closed - algorithm_result for algorithm_result in algorithm_results])
-#
-# result_presenter = ResultPresenter()
-# result_presenter.print_results_single_chart(results)
-# # result_presenter.print_results_separate_chart(results)
-# result_presenter.print_results_single_chart(results_diff)
+algorithm_tester = AlgorithmTester()
+algorithm_results = []
+print("Predictions started")
+for algorithm in algorithms:
+    algorithm_results.append(algorithm_tester.perform_test(algorithm, test_data))
+print("Predictions finished")
+
+test_data_closed = test_data.iloc[5:]['Close']
+
+results = np.add(np.array([test_data_closed]), algorithm_results)
+results_diff = np.array([test_data_closed - algorithm_result for algorithm_result in algorithm_results])
+
+result_presenter = ResultPresenter()
+result_presenter.print_results_single_chart(results)
+# result_presenter.print_results_separate_chart(results)
+result_presenter.print_results_single_chart(results_diff)
