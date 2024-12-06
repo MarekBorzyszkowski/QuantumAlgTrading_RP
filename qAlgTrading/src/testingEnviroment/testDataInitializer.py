@@ -10,8 +10,8 @@ from qAlgTrading.src.testingEnviroment.algorithmTester import AlgorithmTester
 from qAlgTrading.src.testingEnviroment.resultsPresenter import ResultPresenter
 
 start_date = '2003-01-01'
-num_days = 100
-train_data_precent = 0.8
+num_days = 1000
+train_data_precent = 0.7
 
 file_path = '../../../data/wig20/components/PKO.csv'
 data = pd.read_csv(file_path)
@@ -23,11 +23,12 @@ pca_algorithm = PcaAlgorithm()
 print("PCA initialized")
 svm_algorithm = SvmAlgorithm()
 print("SVM initialized")
-# qpca_algorithm = QPcaAlgorithm()
+qpca_algorithm = QPcaAlgorithm()
+print("QPCA initialized")
 qsvm_algorithm = QSvmAlgorithm()
 print("QSVM initialized")
 print("End of initialization")
-algorithms = [pca_algorithm, svm_algorithm, qsvm_algorithm]
+algorithms = [pca_algorithm, svm_algorithm, qpca_algorithm, qsvm_algorithm]
 
 train_data = filtered_data.iloc[:int(train_data_precent * len(filtered_data))]
 test_data = filtered_data.iloc[int(train_data_precent * len(filtered_data)):]
