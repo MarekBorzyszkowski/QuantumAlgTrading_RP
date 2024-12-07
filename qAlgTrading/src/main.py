@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from sklearn.model_selection import TimeSeriesSplit
 
 from algorithms import PcaAlgorithm, SvmAlgorithm, QPcaAlgorithm, QSvmAlgorithm
 from testingEnviroment import AlgorithmTester, ResultPresenter
@@ -12,6 +13,14 @@ file_path = '../data/sp500/^SPX.csv'
 data = pd.read_csv(file_path)
 filtered_data = data[data['Date'] >= start_date].head(num_days)
 
+tscv = TimeSeriesSplit(n_splits=10)
+splits = list(tscv.split(filtered_data))
+
+train_index, test_index = splits[-1]
+train_data = filtered_data.iloc[train_index]
+test_data = filtered_data.iloc[test_index]
+print(train_index)
+print(test_index)
 
 print("Start of algorithm initialization")
 pca_algorithm = PcaAlgorithm()
@@ -25,8 +34,8 @@ print("SVM initialized")
 print("End of initialization")
 algorithms = [pca_algorithm, svm_algorithm]#, qpca_algorithm, qsvm_algorithm]
 
-train_data = filtered_data.iloc[:int(train_data_percent * len(filtered_data))]
-test_data = filtered_data.iloc[int(train_data_percent * len(filtered_data)):]
+# train_data = filtered_data.iloc[:int(train_data_percent * len(filtered_data))]
+# test_data = filtered_data.iloc[int(train_data_percent * len(filtered_data)):]
 print("Training initialized")
 for algorithm in algorithms:
     print(f"Start training of {algorithm.name()}")
