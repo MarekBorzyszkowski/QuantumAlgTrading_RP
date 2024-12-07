@@ -1,6 +1,6 @@
 import numpy as np
 
-from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
+from .tradingAlgorithm import TradingAlgorithm
 from sklearn.decomposition import KernelPCA
 from sklearn.linear_model import LinearRegression
 from qiskit_machine_learning.kernels import FidelityQuantumKernel
@@ -23,9 +23,11 @@ class QPcaAlgorithm(TradingAlgorithm):
 
         X = self._prepare_features(close_prices)
         y = close_prices[self.history_length:]
+        print("Start matrix_train_prep")
         matrix_train = self.kernel.evaluate(x_vec=X)
+        print("Start qpca fit transform")
         self.X_reduced = self.qpca.fit_transform(matrix_train)
-
+        print("Start model fit")
         self.model.fit(self.X_reduced, y)
 
         self.history_data = historical_data

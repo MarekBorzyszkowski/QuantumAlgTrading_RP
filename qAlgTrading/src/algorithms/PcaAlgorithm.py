@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
 
-from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
+from .tradingAlgorithm import TradingAlgorithm
 
 
 class PcaAlgorithm(TradingAlgorithm):

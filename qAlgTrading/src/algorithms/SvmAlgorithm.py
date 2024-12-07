@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVR
 
-from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
+from .tradingAlgorithm import TradingAlgorithm
 
 
 class SvmAlgorithm(TradingAlgorithm):

@@ -1,6 +1,6 @@
 from tqdm import tqdm
 
-from qAlgTrading.src.constants import FEATURES
+from .constants import FEATURES
 
 
 class AlgorithmTester:

@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from qiskit_machine_learning.algorithms import QSVR
-from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
+from .tradingAlgorithm import TradingAlgorithm
 
 
 class QSvmAlgorithm(TradingAlgorithm):

@@ -1,4 +1,4 @@
-from qAlgTrading.src.algorithms.tradingAlgorithm import TradingAlgorithm
+from qAlgTrading.src.algorithms.tradingAlgorithm.TradingAlgorithm import TradingAlgorithm
 
 
 class TestTradingAlgorithm(TradingAlgorithm):
