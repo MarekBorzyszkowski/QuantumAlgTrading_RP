@@ -11,7 +11,6 @@ from testingEnviroment import AlgorithmTester, ResultPresenter
 
 json_file_name = sys.argv[1]
 json_output = {}
-load_models = False
 
 with open(json_file_name, "r") as file:
     loaded_data = json.load(file)
@@ -32,8 +31,11 @@ use_qsvm = loaded_data["use_qsvm"]
 component_name = f"{index}_{component}"
 json_output[component_name] = component_name
 newpath = f"../results/{component_name}"
-component_model_to_load = component_name #"wig20_pko"
+
+load_models = loaded_data["load_models"]
+component_model_to_load = loaded_data["loaded_model_path"] #component_name
 loadedModelPath = f"../results/{component_model_to_load}/model"
+
 if not os.path.exists(newpath):
     os.makedirs(newpath)
     os.makedirs(f"{newpath}/figures")
