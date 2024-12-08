@@ -6,7 +6,8 @@ from .tradingAlgorithm import TradingAlgorithm
 
 class QSvmAlgorithm(TradingAlgorithm):
     def __init__(self, history_length=5):
-        self.scaler = StandardScaler()
+        self.scaler_X = StandardScaler()
+        self.scaler_Y = StandardScaler()
         self.model = QSVR()
         self.history_data = None
         self.history_length = history_length
@@ -18,11 +19,12 @@ class QSvmAlgorithm(TradingAlgorithm):
         close_prices = historical_data['Close'].values
 
         X = self._prepare_features(close_prices)
-        y = close_prices[len(close_prices) - len(X):]
+        Y = [[element] for element in close_prices[self.history_length:]]
 
-        X_scaled = self.scaler.fit_transform(X)
+        X_scaled = self.scaler_X.fit_transform(X)
+        Y_scaled = self.scaler_Y.fit_transform(Y)
 
-        self.model.fit(X_scaled, y)
+        self.model.fit(X_scaled, Y_scaled)
 
         self.history_data = historical_data
 
@@ -36,9 +38,9 @@ class QSvmAlgorithm(TradingAlgorithm):
         close_prices = historical_data['Close'].values
         X = self._prepare_features_to_fit(close_prices)
 
-        X_scaled = self.scaler.transform(X)
+        X_scaled = self.scaler_X.transform(X)
 
-        return self.model.predict(X_scaled).item()
+        return self.scaler_Y.inverse_transform([self.model.predict(X_scaled)]).item()
 
     def history(self):
         raise NotImplementedError
