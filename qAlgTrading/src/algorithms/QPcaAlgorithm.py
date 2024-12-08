@@ -42,7 +42,7 @@ class QPcaAlgorithm(TradingAlgorithm):
             raise ValueError("Insufficient data for prediction.")
 
         X = self._prepare_features_to_fit(historical_data['Close'].values) #Do sprawdzenia
-        matrix_test = self.kernel.evaluate(x_vec=X, y_vec=self.X_reduced)
+        matrix_test = self.kernel.evaluate(x_vec=X, y_vec=self.train_X)
         X_reduced = self.qpca.transform(matrix_test)
 
         return self.model.predict(X_reduced).item()
