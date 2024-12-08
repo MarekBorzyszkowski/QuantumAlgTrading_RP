@@ -4,8 +4,7 @@ if [ ! -d src/venv ]; then
   ./setup.sh
 fi
 source src/venv/bin/activate
-pwd
 
 echo "Start of tests"
-(src/venv/bin/python3 src/main.py)
+src/venv/bin/python3 src/main.py example.json
 echo "End of tests"

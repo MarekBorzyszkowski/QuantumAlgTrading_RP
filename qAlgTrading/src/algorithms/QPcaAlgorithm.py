@@ -13,6 +13,7 @@ class QPcaAlgorithm(TradingAlgorithm):
         self.kernel = FidelityQuantumKernel()
         self.model = LinearRegression()
         self.history_data = None
+        self.train_X = None
         self.X_reduced = None
 
     def train(self, historical_data):
@@ -22,14 +23,15 @@ class QPcaAlgorithm(TradingAlgorithm):
         close_prices = historical_data['Close'].values
 
         X = self._prepare_features(close_prices)
+        self.train_X = X
         y = close_prices[self.history_length:]
         print("Start matrix_train_prep")
         matrix_train = self.kernel.evaluate(x_vec=X)
         print("Start qpca fit transform")
-        self.X_reduced = self.qpca.fit_transform(matrix_train)
+        X_reduced = self.qpca.fit_transform(matrix_train)
         print("Start model fit")
-        self.model.fit(self.X_reduced, y)
-
+        self.model.fit(X_reduced, y)
+        self.X_reduced = X_reduced
         self.history_data = historical_data
 
     def fit(self, historical_data):
