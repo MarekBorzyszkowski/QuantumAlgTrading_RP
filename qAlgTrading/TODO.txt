@@ -13,4 +13,4 @@
     każdy z osobna algorytm
     Wszystkie na jednym
     para danych na wykresie oryginalne dane + predykcja nadego algorytmu
-7. Zapisywanie modelu i wczytywanie modelu - sprawdzenie do reużywalności               - P
+7. Zapisywanie modelu i wczytywanie modelu - sprawdzenie do reużywalności               - P - DONE
