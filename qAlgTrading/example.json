@@ -1,0 +1,12 @@
+{
+    "start_date": "2003-01-01",
+    "num_days": 1000,
+    "train_data_percent": 0.6666666666666666,
+    "is_component_of_index": true,
+    "component": "PKO",
+    "index": "wig20",
+    "use_pca": true,
+    "use_svm": true,
+    "use_qpca": false,
+    "use_qsvm": false
+}

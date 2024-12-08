@@ -7,9 +7,9 @@
 
 2. dodanie json'a z parametrami początkowymi                                            - M - DONE
 3. wybieranie odpowiednich danych z listy dostępnych (s&p i wig20)                      - M - DONE
-4. zapisywanie wykresów w konwencji: /results/{dane}/figures/{algorytmy}_{tytul}.png    - P
+4. zapisywanie wykresów w konwencji: /results/{dane}/figures/{algorytmy}_{tytul}.png    - P - DONE
 5. zapisywanie informacji o długości uczenia algorytmu                                  - M - DONE
-6. Tworzenie wykresów:                                                                  - P
+6. Tworzenie wykresów:                                                                  - P - DONE
     każdy z osobna algorytm
     Wszystkie na jednym
     para danych na wykresie oryginalne dane + predykcja nadego algorytmu

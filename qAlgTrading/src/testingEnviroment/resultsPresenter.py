@@ -5,7 +5,7 @@ class ResultPresenter:
     def __init__(self):
         pass
 
-    def print_results_single_chart(self, results, title="Results of Algorithms", ylabel="Predicted price"):
+    def print_results_single_chart(self, results, title="Results of Algorithms", ylabel="Predicted price", component_name="NOT_GIVEN", with_save=False):
         """
         Prezentuje wyniki algorytmu na pojedynczym wykresie.
 
@@ -23,8 +23,10 @@ class ResultPresenter:
         plt.grid(True)
         plt.legend()
         plt.show()
+        if with_save:
+            plt.savefig(f"../results/{component_name}/figures/{title.replace(' ', '_')}.png")
 
-    def print_results_separate_chart(self, results, title="Results", ylabel="Predicted price"):
+    def print_results_separate_chart(self, results, title="Results", ylabel="Predicted price", component_name="NOT_GIVEN", with_save=False):
         """
         Prezentuje wyniki algorytmów na osobnych wykresach.
 
@@ -37,10 +39,11 @@ class ResultPresenter:
         for i, (name, result) in enumerate(results.items()):
             plt.subplot(num_algorithms, 1, i + 1)
             plt.plot(result)
-            plt.title(f"{name}: {title}")
+            plt.title(f"{name}: {title} ")
             plt.xlabel("Days")
             plt.ylabel(ylabel)
             plt.grid(True)
 
         plt.tight_layout()
-        plt.show()
+        if with_save:
+            plt.savefig(f"../results/{component_name}/figures/{title.replace(' ', '_')}.png")
