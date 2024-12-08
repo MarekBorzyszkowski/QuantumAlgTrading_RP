@@ -11,6 +11,7 @@ from testingEnviroment import AlgorithmTester, ResultPresenter
 
 json_file_name = sys.argv[1]
 json_output = {}
+load_models = False
 
 with open(json_file_name, "r") as file:
     loaded_data = json.load(file)
@@ -31,6 +32,8 @@ use_qsvm = loaded_data["use_qsvm"]
 component_name = f"{index}_{component}"
 json_output[component_name] = component_name
 newpath = f"../results/{component_name}"
+component_model_to_load = component_name #"wig20_pko"
+loadedModelPath = f"../results/{component_model_to_load}/model"
 if not os.path.exists(newpath):
     os.makedirs(newpath)
     os.makedirs(f"{newpath}/figures")
@@ -69,12 +72,19 @@ train_data = filtered_data.iloc[:int(train_data_percent * len(filtered_data))]
 test_data = filtered_data.iloc[int(train_data_percent * len(filtered_data)):]
 print("Training initialized")
 for algorithm in algorithms:
-    print(f"Start training of {algorithm.name()}")
-    start = time.perf_counter()
-    algorithm.train(train_data)
-    end = time.perf_counter()
-    # print(f"{algorithm.name()} took {end - start} seconds")
-    json_output[algorithm.name()] = {"training_time_seconds": end-start}
+    start = 0
+    end = 0
+    if load_models:
+        algorithm.load(loadedModelPath)
+        print(f"Model {algorithm.name()} loaded")
+    else:
+        print(f"Start training of {algorithm.name()}")
+        start = time.perf_counter()
+        algorithm.train(train_data)
+        end = time.perf_counter()
+        # print(f"{algorithm.name()} took {end - start} seconds")
+        algorithm.save(f"{newpath}/model")
+    json_output[algorithm.name()] = {"training_time_seconds": end - start}
 print("Training finished")
 
 algorithm_tester = AlgorithmTester()
@@ -122,7 +132,7 @@ with open(f"{newpath}/info/training_results.json", "w") as file:
 result_presenter = ResultPresenter()
 result_presenter.print_results_single_chart(results, title=f"{component_name} results of algorithms", component_name=component_name, with_save=True)
 result_presenter.print_results_separate_chart(results, title=f"{component_name} results", component_name=component_name, with_save=True)
-result_presenter.print_results_single_chart(results_diff, title=f"Test data and predicted data difference {component_name}",
+result_presenter.print_results_single_chart(results_diff, title=f"{component_name} Test data and predicted data difference",
                                             ylabel="Price difference", component_name=component_name, with_save=True)
 
 # json_file = {

@@ -1,3 +1,6 @@
+import os
+import pickle
+
 import numpy as np
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
@@ -41,13 +44,21 @@ class PcaAlgorithm(TradingAlgorithm):
         return self.model.predict(X_reduced).item()
 
     def history(self):
-        raise NotImplementedError
+        return self.history_data
 
     def save(self, directory: str):
-        raise NotImplementedError
+        with open(os.path.join(directory, "pca.pkl"), "wb") as f:
+            pickle.dump(self.pca, f)
+
+        with open(os.path.join(directory, "pca_model.pkl"), "wb") as f:
+            pickle.dump(self.model, f)
 
     def load(self, directory: str):
-        raise NotImplementedError
+        with open(os.path.join(directory, "pca.pkl"), "rb") as f:
+            self.pca = pickle.load(f)
+
+        with open(os.path.join(directory, "pca_model.pkl"), "rb") as f:
+            self.model = pickle.load(f)
 
     def name(self):
         return "PCA"

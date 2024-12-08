@@ -1,3 +1,6 @@
+import os
+import pickle
+
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from qiskit_machine_learning.algorithms import QSVR
@@ -43,13 +46,27 @@ class QSvmAlgorithm(TradingAlgorithm):
         return self.scaler_Y.inverse_transform([self.model.predict(X_scaled)]).item()
 
     def history(self):
-        raise NotImplementedError
+        return self.history_data
 
     def save(self, directory: str):
-        raise NotImplementedError
+        with open(os.path.join(directory, "qsvm_scaler_x.pkl"), "wb") as f:
+            pickle.dump(self.scaler_X, f)
+
+        with open(os.path.join(directory, "qsvm_scaler_y.pkl"), "wb") as f:
+            pickle.dump(self.scaler_Y, f)
+
+        with open(os.path.join(directory, "qsvm_model.pkl"), "wb") as f:
+            pickle.dump(self.model, f)
 
     def load(self, directory: str):
-        raise NotImplementedError
+        with open(os.path.join(directory, "qsvm_scaler_x.pkl"), "rb") as f:
+            self.scaler_X = pickle.load(f)
+
+        with open(os.path.join(directory, "qsvm_scaler_y.pkl"), "rb") as f:
+            self.scaler_Y = pickle.load(f)
+
+        with open(os.path.join(directory, "qsvm_model.pkl"), "rb") as f:
+            self.model = pickle.load(f)
 
     def name(self):
         return "QSvm"

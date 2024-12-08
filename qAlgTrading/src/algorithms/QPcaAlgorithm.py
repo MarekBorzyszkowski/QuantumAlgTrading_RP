@@ -1,3 +1,6 @@
+import os
+import pickle
+
 import numpy as np
 
 from .tradingAlgorithm import TradingAlgorithm
@@ -48,13 +51,27 @@ class QPcaAlgorithm(TradingAlgorithm):
         return self.model.predict(X_reduced).item()
 
     def history(self):
-        raise NotImplementedError
+        return self.history_data
 
     def save(self, directory: str):
-        raise NotImplementedError
+        with open(os.path.join(directory, "qpca.pkl"), "wb") as f:
+            pickle.dump(self.qpca, f)
+
+        with open(os.path.join(directory, "qpca_kernel.pkl"), "wb") as f:
+            pickle.dump(self.kernel, f)
+
+        with open(os.path.join(directory, "qpca_model.pkl"), "wb") as f:
+            pickle.dump(self.model, f)
 
     def load(self, directory: str):
-        raise NotImplementedError
+        with open(os.path.join(directory, "qpca.pkl"), "rb") as f:
+            self.qpca = pickle.load(f)
+
+        with open(os.path.join(directory, "qpca_kernel.pkl"), "rb") as f:
+            self.kernel = pickle.load(f)
+
+        with open(os.path.join(directory, "qpca_model.pkl"), "rb") as f:
+            self.model = pickle.load(f)
 
     def name(self):
         return "QPCA"

@@ -22,9 +22,9 @@ class ResultPresenter:
         plt.ylabel(ylabel)
         plt.grid(True)
         plt.legend()
-        plt.show()
         if with_save:
             plt.savefig(f"../results/{component_name}/figures/{title.replace(' ', '_')}.png")
+        plt.show()
 
     def print_results_separate_chart(self, results, title="Results", ylabel="Predicted price", component_name="NOT_GIVEN", with_save=False):
         """
