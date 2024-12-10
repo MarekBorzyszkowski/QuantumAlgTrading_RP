@@ -1,0 +1,13 @@
+Po angielsku - ostatecznie
+0. Abstrakt - Skrót założeń.
+1. Wstęp/cel badań- porównanie klasycznych i kwantowych algorytmów w kontekście giełdy. Jakie algorytmy. Geneza - brak takich porównań.
+2. Krótkie omówienie wybranych algorytmów.
+3. Omówienie metody badawczej - uczymy algorytmy przewidywać cenę aktywa w momencie zamknięcia giełdy na podstawie zamknięć z 5 ostatnich dni. (Użyte algorytmy to: PCA, SVR (pochodna z SVM), QPCA, QSVR). Testy przeprowadzono w proporcji 2:1 danych treningowych do testowych. Trenowaliśmy na 6 latach, testy na 3 latach.
+4. Wyniki badań - Uzyskane wyniki, wykresy, porównanie czasu uczenia/predykcji oraz zużycia zasobów przez wybrane algorytmy. Podanie wykorzystywanego sprzętu (I5-4590, 32 GB ram DDR3 1600Hz + 512GB swap + WD 2TB M.2 PCIe Gen4 NVMe Black SN770).
+5. Wnioski - SVR potrafi dobrze wykonać predykcje, ale tylko w zakresach wartości, na których był uczony.
+6. Bibliografia:
+    arXiv:2211.00004v1 - SVM
+    arXiv:1904.05803v1 - PCA/QPCA
+    arXiv:2405.10119v1 - przekrój prac
+    https://cs229.stanford.edu/proj2008/Blokker-TheApplicationofSVMtoAlgorithmicTrading.pdf - przykład jak można zrobić + potencjalne źródło bibliografii
+
