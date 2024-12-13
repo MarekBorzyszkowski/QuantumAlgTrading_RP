@@ -1,0 +1,55 @@
+{
+    "sp500_^SPX": "sp500_^SPX",
+    "PCA": {
+        "training_time_seconds": 0.003011320000041451,
+        "prediction_time_seconds": 0.0323828,
+        "Max_absolute_error": 54.65590725272273,
+        "Min_absolute_error": -85.97719205543399,
+        "Mean_absolute_error": 1.9357065758882788,
+        "Median_absolute_error": 2.7511697555429464,
+        "Max_relative_error": 0.04499345856091933,
+        "Min_relative_error": -0.07680238244397022,
+        "Mean_relative_error": 0.0010441875238789524,
+        "Median_relative_error": 0.00165199166424704,
+        "Mean_square_error": 210.4773243769606
+    },
+    "Svm": {
+        "training_time_seconds": 0.032382841999833545,
+        "prediction_time_seconds": 0.0523828,
+        "Max_absolute_error": 1018.9278256931145,
+        "Min_absolute_error": -90.79233138856716,
+        "Mean_absolute_error": 348.1496228591031,
+        "Median_absolute_error": 94.84898204670549,
+        "Max_relative_error": 0.4781857656566404,
+        "Min_relative_error": -0.08110368798493112,
+        "Mean_relative_error": 0.17965718754546056,
+        "Median_relative_error": 0.05927745378410308,
+        "Mean_square_error": 275681.9770590095
+    },
+    "QPCA": {
+        "training_time_seconds": 34972.02486926,
+        "prediction_time_seconds": 43923.0,
+        "Max_absolute_error": 952.1510730071093,
+        "Min_absolute_error": -76.42990827934273,
+        "Mean_absolute_error": 448.54092553942746,
+        "Median_absolute_error": 433.0488667398198,
+        "Max_relative_error": 0.44748335369694675,
+        "Min_relative_error": -0.0695304073487358,
+        "Mean_relative_error": 0.25078549601781375,
+        "Median_relative_error": 0.26858424266117176,
+        "Mean_square_error": 289257.9748070077
+    },
+    "QSvm": {
+        "training_time_seconds": 51596.10464818201,
+        "prediction_time_seconds": 18291.0,
+        "Max_absolute_error": 1274.4665343451318,
+        "Min_absolute_error": -139.29659957606623,
+        "Mean_absolute_error": 361.23012043106996,
+        "Median_absolute_error": 377.4766292782035,
+        "Max_relative_error": 0.6121710213696953,
+        "Min_relative_error": -0.09925369480136964,
+        "Mean_relative_error": 0.19836831859028092,
+        "Median_relative_error": 0.23824966609885864,
+        "Mean_square_error": 219746.12859997587
+    }
+}

@@ -127,10 +127,10 @@ for algorithm in algorithms:
     json_output[algorithm.name()]["Mean_relative_error"] = np.mean(results_relative_diff[algorithm_name])
     json_output[algorithm.name()]["Median_relative_error"] = np.median(results_relative_diff[algorithm_name])
     json_output[algorithm.name()]["Mean_square_error"] = np.mean(results_squared_diff[algorithm_name])
+    with open(f"{newpath}/info/training_results.json", "w") as file:
+        json.dump(json_output, file, indent=4)
 print("Predictions finished")
 
-with open(f"{newpath}/info/training_results.json", "w") as file:
-    json.dump(json_output, file, indent=4)
 result_presenter = ResultPresenter()
 result_presenter.print_results_single_chart(results, title=f"{component_name} results of algorithms", component_name=component_name, with_save=True)
 result_presenter.print_results_separate_chart(results, title=f"{component_name} results", component_name=component_name, with_save=True)

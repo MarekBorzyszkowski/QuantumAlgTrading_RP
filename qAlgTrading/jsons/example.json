@@ -10,5 +10,5 @@
     "use_qpca": false,
     "use_qsvm": false,
     "load_models": false,
-    "loaded_model_path": "wig20_pko"
+    "loaded_model_path": "wig20_PKO"
 }

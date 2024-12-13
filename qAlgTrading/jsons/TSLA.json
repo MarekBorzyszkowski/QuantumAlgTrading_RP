@@ -10,5 +10,5 @@
     "use_qpca": true,
     "use_qsvm": true,
     "load_models": false,
-    "loaded_model_path": "wig20_pko"
+    "loaded_model_path": "sp500_TSLA"
 }
