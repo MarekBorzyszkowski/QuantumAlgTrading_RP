@@ -1,4 +1,4 @@
-Po angielsku - ostatecznie
+Po angielsku - ostatecznie :).
 0. Abstrakt - Skrót założeń.
 1. Wstęp/cel badań- porównanie klasycznych i kwantowych algorytmów w kontekście giełdy. Jakie algorytmy. Geneza - brak takich porównań.
 2. Krótkie omówienie wybranych algorytmów.

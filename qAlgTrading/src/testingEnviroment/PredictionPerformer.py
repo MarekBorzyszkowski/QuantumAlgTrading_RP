@@ -1,9 +1,9 @@
 from tqdm import tqdm
 
-from .constants import FEATURES
+from .Constants import FEATURES
 
 
-class AlgorithmTester:
+class PredictionPerformer:
     def __init__(self, history_length=5):
         self.history_length = history_length
 

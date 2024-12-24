@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 from algorithms import PcaAlgorithm, SvmAlgorithm, QPcaAlgorithm, QSvmAlgorithm
-from testingEnviroment import AlgorithmTester, ResultPresenter
+from testingEnviroment import PredictionPerformer, ResultPresenter
 
 json_file_name = sys.argv[1]
 json_output = {}
@@ -89,7 +89,7 @@ for algorithm in algorithms:
     json_output[algorithm.name()] = {"training_time_seconds": end - start}
 print("Training finished")
 
-algorithm_tester = AlgorithmTester()
+algorithm_prediction_performer = PredictionPerformer()
 algorithm_results = []
 
 results = {'Test Data': test_data.iloc[5:]['Close'].values}
@@ -100,7 +100,7 @@ results_squared_diff = {}
 print("Predictions started")
 for algorithm in algorithms:
     print(f"Start prediction of {algorithm.name()}")
-    algorithm_result = algorithm_tester.perform_test(algorithm, test_data)
+    algorithm_result = algorithm_prediction_performer.perform_test(algorithm, test_data)
     algorithm_name = algorithm.name()
     results[algorithm_name] = algorithm_result
     results_diff[algorithm_name] = test_data.iloc[5:]['Close'].values - np.array(algorithm_result)

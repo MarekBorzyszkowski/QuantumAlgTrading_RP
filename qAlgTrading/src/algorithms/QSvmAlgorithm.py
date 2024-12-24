@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from qiskit_machine_learning.algorithms import QSVR
-from .tradingAlgorithm import TradingAlgorithm
+from .TradingAlgorithm import TradingAlgorithm
 
 
 class QSvmAlgorithm(TradingAlgorithm):

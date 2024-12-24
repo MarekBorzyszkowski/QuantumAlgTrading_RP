@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
 
-from .tradingAlgorithm import TradingAlgorithm
+from .TradingAlgorithm import TradingAlgorithm
 
 
 class PcaAlgorithm(TradingAlgorithm):

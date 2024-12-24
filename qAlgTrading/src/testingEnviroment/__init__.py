@@ -1,2 +1,2 @@
-from .algorithmTester import AlgorithmTester
-from .resultsPresenter import ResultPresenter
+from .PredictionPerformer import PredictionPerformer
+from .ResultsPresenter import ResultPresenter
