@@ -1,6 +1,6 @@
 import abc
 
-class Trader(metaclass=abc.ABC):
+class Trader(metaclass=abc.ABCMeta):
     @classmethod
     def __subclasshook__(cls, subclass):
         return (hasattr(subclass, 'actUponPrediction') and
@@ -10,7 +10,9 @@ class Trader(metaclass=abc.ABC):
                 hasattr(subclass, 'currentTraderValue') and
                 callable(subclass.currentTraderValue) and
                 hasattr(subclass, 'currentCapitalValue') and
-                callable(subclass.currentCapitalValue)
+                callable(subclass.currentCapitalValue) and
+                hasattr(subclass, 'name') and
+                callable(subclass.name)
                 or NotImplemented)
 
     @abc.abstractmethod
@@ -29,14 +31,6 @@ class Trader(metaclass=abc.ABC):
     def currentCapitalValue(self):
         raise NotImplemented
 
-    # def trade(self, price, decision):
-    #     if decision == "buy" and self.cash >= price:
-    #         self.shares += 1
-    #         self.cash -= price
-    #     elif decision == "sell" and self.shares > 0:
-    #         self.shares -= 1
-    #         self.cash += price
-    #
-    # def update_portfolio_value(self, current_price):
-    #     total_value = self.cash + (self.shares * current_price)
-    #     return total_value
+    @abc.abstractmethod
+    def name(self):
+        raise NotImplemented

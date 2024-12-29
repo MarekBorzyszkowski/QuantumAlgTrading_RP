@@ -1,2 +1,3 @@
 from .PredictionPerformer import PredictionPerformer
 from .ResultsPresenter import ResultPresenter
+from .TraderSimulator import TraderSimulator

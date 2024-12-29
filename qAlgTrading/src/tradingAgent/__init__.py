@@ -1,1 +1,3 @@
 from .WholeValueTrader import WholeValueTrader
+from .BuyAndKeepTrader import BuyAndKeepTrader
+from .RemainValueTrader import RemainValueTrader
