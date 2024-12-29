@@ -86,12 +86,16 @@ print("End of initialization")
 
 train_data = filtered_data.iloc[:int(train_data_percent * len(filtered_data))]
 test_data = filtered_data.iloc[int(train_data_percent * len(filtered_data)):]
+json_output['train_data_size'] = len(train_data)
+json_output['test_data_size'] = len(test_data)
 json_output['begin_train_date'] = train_data.iloc[0]['Date']
 json_output['end_train_date'] = train_data.iloc[-1]['Date']
 json_output['begin_test_date'] = test_data.iloc[0]['Date']
 json_output['end_test_date'] = test_data.iloc[-1]['Date']
 print("Training initialized")
 for algorithm in algorithms:
+    if not os.path.exists(f"{newpath}/figures/traders/{algorithm.name()}"):
+        os.makedirs(f"{newpath}/figures/traders/{algorithm.name()}")
     start = 0
     end = 0
     if load_models:
@@ -121,9 +125,12 @@ results_squared_diff = {}
 print("Predictions started")
 for algorithm in algorithms:
     print(f"Start prediction of {algorithm.name()}")
+    start = time.perf_counter()
     algorithm_result = algorithm_prediction_performer.perform_test(algorithm, test_data)
+    end = time.perf_counter()
     algorithm_name = algorithm.name()
     predictions[algorithm_name] = list(algorithm_result)
+    json_output[algorithm.name()]['prediction_time_seconds'] = end - start
 
     results_diff[algorithm_name] = test_data_close - np.array(algorithm_result)
     results_relative_diff[algorithm_name] = results_diff[algorithm_name] / test_data_close
@@ -172,7 +179,7 @@ for algorithm in algorithms:
         trader_results = traderSim.performSimulation(trader, predictions[algorithm.name()], test_data_for_trader)
         traders_results[trader.name()] = trader_results
         traders_results['values'][trader.name()]=trader_results['trader_value']
-        result_presenter.print_results_single_chart(trader_results, prediction_dates, title=f"{component_name} using {algorithm.name()} {trader.name()} results all info",component_name=component_name, with_save=True, subfolder='traders')
-        result_presenter.print_results_single_chart({'trader_value': trader_results['trader_value']}, prediction_dates, title=f"{component_name} using {algorithm.name()} {trader.name()} results",component_name=component_name, with_save=True, subfolder='traders')
-    result_presenter.print_results_single_chart(traders_results['values'], prediction_dates, title=f'{component_name} using {algorithm.name()} traders results comparison',component_name=component_name, with_save=True, subfolder='traders')
+        result_presenter.print_results_single_chart(trader_results, prediction_dates, title=f"{component_name} using {algorithm.name()} {trader.name()} results all info",component_name=component_name, with_save=True, subfolder=f'traders/{algorithm.name()}')
+        result_presenter.print_results_single_chart({'trader_value': trader_results['trader_value']}, prediction_dates, title=f"{component_name} using {algorithm.name()} {trader.name()} results",component_name=component_name, with_save=True, subfolder=f'traders/{algorithm.name()}')
+    result_presenter.print_results_single_chart(traders_results['values'], prediction_dates, title=f'{component_name} using {algorithm.name()} traders results comparison',component_name=component_name, with_save=True, subfolder=f'traders')
 print("Training finished")
