@@ -1,0 +1,90 @@
+\documentclass[polish,envcountsect,10pt]{article}
+
+   	\usepackage[T1]{fontenc}
+   	\usepackage{polski}
+    \usepackage{babel}
+    \usepackage{subfigure}
+	\usepackage{graphicx}
+	\usepackage{geometry}
+	\usepackage{listings}
+	\usepackage{float}
+	\usepackage{graphicx}
+
+\title{Raport przejściowy}
+\author{inż. Paulina Brzęcka 184701 \and inż. Marek Borzyszkowski 184266 \and inż. Wojciech Baranowski 184574}
+\date{\today}
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Projekt badawczy}
+
+\subsection{Tytuł}
+
+Wykorzystanie obliczeń kwantowych w algorithmic trading.
+
+\subsection{Zleceniodawca i Opiekun}
+
+Zleceniodawcą i opiekunem projektu jest dr inż. Piotr Mironowicz.
+
+\subsection{Uczelnia i wydział}
+
+Politechnika Gdańska - Wydział Elektroniki, Telekomunikacji i Informatyki.
+
+\section{Rezultaty projektu}
+
+\subsection{Założenia początkowe i krótki opis projektu}
+Algorithmic trading, czyli handel algorytmiczny, to strategia inwestycyjna polegająca na wykorzystaniu zautomatyzowanych systemów handlowych do podejmowania decyzji inwestycyjnych na rynkach finansowych. Obliczenia kwantowe mają potencjał wzmocnienia tych strategii poprzez szybsze i bardziej efektywne przetwarzanie danych rynkowych oraz analizę trendów. W ramach tego tematu zostanie zbadana możliwość zaimplementowania agenta podejmującego decyzje inwestycyjne podczas gry na giełdzie, wykorzystując obliczenia kwantowe. Agent będzie testowany na emulatorze komputera kwantowego lub rzeczywistym komputerze, a jego skuteczność będzie porównywana z wybranymi algorytmami niekorzystającymi z technologii kwantowych. Efektem projektu będzie szkic artykułu naukowego opisującego przeprowadzone badania i wnioski z nich płynące.
+
+\subsection{Zakres wykonanych prac i ich charakterystyka}
+
+\subsubsection{Zebranie zestawów danych}
+Zebrano historyczne dane giełdowe z top 20 spółek z indeksów WIG20 i S\&P, jak i historyczne dane giełdowe samych indeksów.
+Dane te zapisano w formie csv w celu łatwego ich przetwarzania.
+
+\subsubsection{Implementacja algorytmów klasycznych}
+Z pomocą dostępnych źródeł dodkonano implementacji algorytmów bazujących na klasycznym podejściu do obliczeń. 
+Wybranymi algorytmami były:
+\begin{itemize}
+	\item PCA,
+	\item SVM.
+\end{itemize}
+\subsubsection{Implementacja algorytmów kwantowych}
+Z pomocą dostępnych źródeł dodkonano implementacji algorytmów bazujących na kwantowym podejściu do obliczeń. 
+Wybranymi algorytmami były:
+\begin{itemize}
+	\item QPCA,
+	\item QSVM.
+\end{itemize}
+\subsubsection{Przeprowadzenie testów}
+Na podstawie wybranych zestawów danych (WIG20/S\&P), sprawdzono jakość predykcji wybranych algorytmów klasycznych, jak i kwantowych.
+
+\subsubsection{Rozpoczęcie wstępnych prac nad artykułem}
+Stworzono wstępny zarys artykułu, zebrano potrzebną bibliografię.
+
+\subsection{Charakterystyka pracy zespołowej}
+Podczas prac badawczych korzystano z następujących narzędzi do wymiany myśli i stworzonych artefaktów:
+\begin{itemize}
+	\item discord do spotkań w grupie jak i z opiekunem, 
+	\item github do trzymania artefaktów wytworzonych w czasie pracy nad projektem,
+	\item \LaTeX ~do pisania dokumentów.
+\end{itemize}
+\subsection{Osiągnięte wyniki}
+W ramach projektu badawczego w tym semestrze dokonano implementacji wybranych algorytmów służących do przewidywania wartości ciągłych na podstawie zestawu danych.
+Wybranymi algorytmami były:
+\begin{itemize}
+	\item PCA,
+	\item SVM,
+	\item QPCA,
+	\item QSVM.
+\end{itemize}
+Dla każdego z algorytmów przeprowadzono testy o szerokim zakresie na danych pokrywające dane giełdowe z ubiegłych lat. 
+Na podstawie testów udało się stworzyć wykresy ukazujące działanie każdego z algorytmów, jak i zebrano dane statystyczne dotyczące jakości predykcji każdego z algorytmów.
+\subsection{Rozbieżności i zmiany w realizacji projektu}
+Brak.
+\subsection{Postanowienia}
+Wykonanie większej liczby testów oraz skończenie artykułu.
+
+\end{document}
