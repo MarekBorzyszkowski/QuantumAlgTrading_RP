@@ -63,6 +63,9 @@ class QPcaAlgorithm(TradingAlgorithm):
         with open(os.path.join(directory, "qpca_model.pkl"), "wb") as f:
             pickle.dump(self.model, f)
 
+        with open(os.path.join(directory, "qpca_train_X.pkl"), "wb") as f:
+            pickle.dump(self.train_X, f)
+
     def load(self, directory: str):
         with open(os.path.join(directory, "qpca.pkl"), "rb") as f:
             self.qpca = pickle.load(f)
@@ -72,6 +75,9 @@ class QPcaAlgorithm(TradingAlgorithm):
 
         with open(os.path.join(directory, "qpca_model.pkl"), "rb") as f:
             self.model = pickle.load(f)
+
+        with open(os.path.join(directory, "qpca_train_X.pkl"), "rb") as f:
+            self.train_X = pickle.load(f)
 
     def name(self):
         return "QPCA"
