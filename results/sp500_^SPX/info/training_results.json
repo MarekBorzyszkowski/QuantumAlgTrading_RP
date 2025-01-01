@@ -10,8 +10,8 @@
     "begin_test_date": "2016-12-29",
     "end_test_date": "2023-12-29",
     "PCA": {
-        "training_time_seconds": 0.004394550000142772,
-        "prediction_time_seconds": 1.009121638002398,
+        "training_time_seconds": 0.002762995001830859,
+        "prediction_time_seconds": 0.5866338570012886,
         "Max_absolute_error": 203.2587450210317,
         "Min_absolute_error": -313.0617104172975,
         "Mean_absolute_error": 1.4734993006464194,
@@ -23,8 +23,8 @@
         "Mean_square_error": 1624.1249211118343
     },
     "Svm": {
-        "training_time_seconds": 0.028447438002331182,
-        "prediction_time_seconds": 1.2340352920000441,
+        "training_time_seconds": 0.01668845399763086,
+        "prediction_time_seconds": 0.6702137570027844,
         "Max_absolute_error": 3315.486787955056,
         "Min_absolute_error": 29.235620774980816,
         "Mean_absolute_error": 1803.8529072149327,
