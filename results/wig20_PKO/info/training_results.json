@@ -1,0 +1,38 @@
+{
+    "component_name": "wig20_PKO",
+    "start_date": "2003-01-01",
+    "end_date": "2024-01-01",
+    "train_data_percent": 0.6666666666666666,
+    "train_data_size": 3194,
+    "test_data_size": 1597,
+    "begin_train_date": "2004-11-10",
+    "end_train_date": "2017-08-09",
+    "begin_test_date": "2017-08-10",
+    "end_test_date": "2023-12-29",
+    "PCA": {
+        "training_time_seconds": 0.002619475999381393,
+        "prediction_time_seconds": 0.4793337699993572,
+        "Max_absolute_error": 4.101976885784374,
+        "Min_absolute_error": -6.287452809942025,
+        "Mean_absolute_error": 0.03127247841390121,
+        "Median_absolute_error": 0.019889251825203402,
+        "Max_relative_error": 0.11580317465539489,
+        "Min_relative_error": -0.20277330854160228,
+        "Mean_relative_error": 0.0005069859590688537,
+        "Median_relative_error": 0.0006574660655014935,
+        "Mean_square_error": 0.4092593928287672
+    },
+    "Svm": {
+        "training_time_seconds": 0.07506562499838765,
+        "prediction_time_seconds": 0.6448946179989434,
+        "Max_absolute_error": 24.387939280420184,
+        "Min_absolute_error": -3.072176851999483,
+        "Mean_absolute_error": 1.379675252118706,
+        "Median_absolute_error": 0.21434832310013618,
+        "Max_relative_error": 0.5131159496060347,
+        "Min_relative_error": -0.15366262451855567,
+        "Mean_relative_error": 0.03354851171047658,
+        "Median_relative_error": 0.007598108465518975,
+        "Mean_square_error": 17.737242179143465
+    }
+}
