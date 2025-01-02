@@ -1,0 +1,38 @@
+{
+    "component_name": "sp500_NFLX",
+    "start_date": "2003-01-01",
+    "end_date": "2024-01-01",
+    "train_data_percent": 0.6666666666666666,
+    "train_data_size": 3523,
+    "test_data_size": 1762,
+    "begin_train_date": "2003-01-02",
+    "end_train_date": "2016-12-28",
+    "begin_test_date": "2016-12-29",
+    "end_test_date": "2023-12-29",
+    "PCA": {
+        "training_time_seconds": 0.0028380309995554853,
+        "prediction_time_seconds": 0.6355568800026958,
+        "Max_absolute_error": 84.37994976392878,
+        "Min_absolute_error": -122.90501397819025,
+        "Mean_absolute_error": 0.016662773613329695,
+        "Median_absolute_error": 0.005971289187868933,
+        "Max_relative_error": 0.14390958467505202,
+        "Min_relative_error": -0.543370674616247,
+        "Mean_relative_error": -0.00019839041484584567,
+        "Median_relative_error": 3.654280647494379e-05,
+        "Mean_square_error": 102.15261924583223
+    },
+    "Svm": {
+        "training_time_seconds": 0.019338771999173332,
+        "prediction_time_seconds": 0.7268363110015343,
+        "Max_absolute_error": 624.0869854717924,
+        "Min_absolute_error": 4.067408872167334,
+        "Mean_absolute_error": 285.4155656199665,
+        "Median_absolute_error": 283.73697947179244,
+        "Max_relative_error": 0.9022639963961665,
+        "Min_relative_error": 0.03103233886427834,
+        "Mean_relative_error": 0.7532226661513727,
+        "Median_relative_error": 0.8075851958277829,
+        "Mean_square_error": 99837.57388861648
+    }
+}

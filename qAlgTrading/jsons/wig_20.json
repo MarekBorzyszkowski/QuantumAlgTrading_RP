@@ -7,8 +7,8 @@
     "index": "wig20",
     "use_pca": true,
     "use_svm": true,
-    "use_qpca": true,
-    "use_qsvm": true,
+    "use_qpca": false,
+    "use_qsvm": false,
     "load_models": false,
     "loaded_model_path": "wig20_WIG20"
 }

@@ -1,0 +1,38 @@
+{
+    "component_name": "sp500_MSFT",
+    "start_date": "2003-01-01",
+    "end_date": "2024-01-01",
+    "train_data_percent": 0.6666666666666666,
+    "train_data_size": 3523,
+    "test_data_size": 1762,
+    "begin_train_date": "2003-01-02",
+    "end_train_date": "2016-12-28",
+    "begin_test_date": "2016-12-29",
+    "end_test_date": "2023-12-29",
+    "PCA": {
+        "training_time_seconds": 0.002469931998348329,
+        "prediction_time_seconds": 0.5809379029997217,
+        "Max_absolute_error": 19.550221887538044,
+        "Min_absolute_error": -22.720684319574303,
+        "Mean_absolute_error": 0.14153541326662453,
+        "Median_absolute_error": 0.11862802924802907,
+        "Max_relative_error": 0.11805269012557001,
+        "Min_relative_error": -0.1677793874991366,
+        "Mean_relative_error": 0.0006652063386257146,
+        "Median_relative_error": 0.0009530310860892152,
+        "Mean_square_error": 14.267656063487735
+    },
+    "Svm": {
+        "training_time_seconds": 0.03611581600125646,
+        "prediction_time_seconds": 0.7297379869996803,
+        "Max_absolute_error": 343.2840889510112,
+        "Min_absolute_error": 0.12710497304947665,
+        "Mean_absolute_error": 152.5765794989148,
+        "Median_absolute_error": 162.6040809510112,
+        "Max_relative_error": 0.8970056916303708,
+        "Min_relative_error": 0.002040208267892214,
+        "Mean_relative_error": 0.7056822900333797,
+        "Median_relative_error": 0.8048909896616536,
+        "Mean_square_error": 32132.865983577318
+    }
+}
