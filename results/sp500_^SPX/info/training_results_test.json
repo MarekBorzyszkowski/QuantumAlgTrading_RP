@@ -10,8 +10,8 @@
     "begin_test_date": "2016-12-29",
     "end_test_date": "2023-12-29",
     "PCA": {
-        "training_time_seconds": 0,
-        "prediction_time_seconds": 0.9391721279826015,
+        "training_time_seconds": 0.004394550000142772,
+        "prediction_time_seconds": 1.009121638002398,
         "Max_absolute_error": 203.2587450210317,
         "Min_absolute_error": -313.0617104172975,
         "Mean_absolute_error": 1.4734993006464194,
@@ -23,8 +23,8 @@
         "Mean_square_error": 1624.1249211118343
     },
     "Svm": {
-        "training_time_seconds": 0,
-        "prediction_time_seconds": 1.1558131439960562,
+        "training_time_seconds": 0.028447438002331182,
+        "prediction_time_seconds": 1.2340352920000441,
         "Max_absolute_error": 3315.486787955056,
         "Min_absolute_error": 29.235620774980816,
         "Mean_absolute_error": 1803.8529072149327,
@@ -36,9 +36,11 @@
         "Mean_square_error": 4133618.8629527763
     },
     "QPCA": {
-        "training_time_seconds": 0
+        "training_time_seconds": 108721.479315745615,
+        "Memory_usage": "275GiB"
     },
     "QSvm": {
-        "training_time_seconds": 0
+        "training_time_seconds": 172782.289965557,
+        "Memory_usage": "291GiB"
     }
 }
