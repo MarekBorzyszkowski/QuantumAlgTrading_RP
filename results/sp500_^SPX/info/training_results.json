@@ -10,7 +10,7 @@
     "begin_test_date": "2016-12-29",
     "end_test_date": "2023-12-29",
     "PCA": {
-        "training_time_seconds": 0,
+        "training_time_seconds": 0.004394550000142772,
         "prediction_time_seconds": 0.9391721279826015,
         "Max_absolute_error": 203.2587450210317,
         "Min_absolute_error": -313.0617104172975,
@@ -23,7 +23,7 @@
         "Mean_square_error": 1624.1249211118343
     },
     "Svm": {
-        "training_time_seconds": 0,
+        "training_time_seconds": 0.028447438002331182,
         "prediction_time_seconds": 1.1558131439960562,
         "Max_absolute_error": 3315.486787955056,
         "Min_absolute_error": 29.235620774980816,
@@ -36,9 +36,31 @@
         "Mean_square_error": 4133618.8629527763
     },
     "QPCA": {
-        "training_time_seconds": 0
+        "training_time_seconds": 108721.479315745615,
+        "Memory_usage": "275GiB",
+        "prediction_time_seconds": 48816.490510767035,
+        "Max_absolute_error": 3399.268408815697,
+        "Min_absolute_error": 814.4536381365506,
+        "Mean_absolute_error": 2014.4796190751451,
+        "Median_absolute_error": 1868.776727590019,
+        "Max_relative_error": 0.7099973755200187,
+        "Min_relative_error": 0.36401791088330465,
+        "Mean_relative_error": 0.5669915307047948,
+        "Median_relative_error": 0.5704421993315587,
+        "Mean_square_error": 4627193.84009978
     },
     "QSvm": {
-        "training_time_seconds": 0
+        "training_time_seconds": 172782.289965557,
+        "Memory_usage": "291GiB",
+        "prediction_time_seconds": 48358.96450063202,
+        "Max_absolute_error": 4164.381991626613,
+        "Min_absolute_error": 363.9063046847075,
+        "Mean_absolute_error": 2136.9955332315303,
+        "Median_absolute_error": 1973.6271527005704,
+        "Max_relative_error": 0.9231236954759853,
+        "Min_relative_error": 0.15981972080611243,
+        "Mean_relative_error": 0.5945590152459976,
+        "Median_relative_error": 0.6068319405671307,
+        "Mean_square_error": 5487400.77740536
     }
 }
