@@ -36,22 +36,22 @@ This paper aims to investigate the implementation and evaluation of both classic
 
 \section{Algorithms Overview}
 \subsection{Principal Component Analysis (PCA)}
-Principal Component Analysis (PCA) is a widely-used dimensionality reduction technique that allows for the simplification of complex datasets while retaining as much of the variance as possible. The goal of PCA is to transform a dataset into a new coordinate system, where the axes (known as principal components) correspond to the directions of maximum variance in the data. By projecting data onto a lower-dimensional space, PCA reduces the number of features needed to represent the data, making it easier to analyze and visualize. This process is particularly useful in fields such as finance, where large amounts of historical market data may include redundant or highly correlated features.
+Principal Component Analysis (PCA) \cite{pca} is a widely-used dimensionality reduction technique that allows for the simplification of complex datasets while retaining as much of the variance as possible. The goal of PCA is to transform a dataset into a new coordinate system, where the axes (known as principal components) correspond to the directions of maximum variance in the data. By projecting data onto a lower-dimensional space, PCA reduces the number of features needed to represent the data, making it easier to analyze and visualize. This process is particularly useful in fields such as finance, where large amounts of historical market data may include redundant or highly correlated features.
 
 The strength of PCA lies in its ability to identify patterns in data and eliminate noise, making it a powerful tool for preprocessing in machine learning models. In the context of stock market prediction, PCA can be applied to identify key factors that drive asset prices and reduce the dimensionality of market data, thereby simplifying the problem and improving the performance of subsequent predictive models. However, while PCA is effective in capturing linear relationships in data, it may struggle to identify more complex, nonlinear patterns that are often present in financial markets. This limitation has driven the development of more sophisticated algorithms, including those that leverage quantum computing.
 
 \subsection{Support Vector Machines (SVM)}
-Support Vector Machines (SVMs) are a class of supervised learning algorithms primarily used for classification and regression tasks. The main idea behind SVM is to find the optimal hyperplane that best separates data points belonging to different classes or, in the case of regression, fits the data with minimal error. In its simplest form, SVM constructs a hyperplane in a high-dimensional space that maximizes the margin between two classes. For regression tasks, SVM aims to find a function that has the smallest deviation from the actual data points within a predefined margin of tolerance.
+Support Vector Machines (SVMs) \cite{svm} are a class of supervised learning algorithms primarily used for classification and regression tasks. The main idea behind SVM is to find the optimal hyperplane that best separates data points belonging to different classes or, in the case of regression, fits the data with minimal error. In its simplest form, SVM constructs a hyperplane in a high-dimensional space that maximizes the margin between two classes. For regression tasks, SVM aims to find a function that has the smallest deviation from the actual data points within a predefined margin of tolerance.
 
 SVM is particularly effective when dealing with high-dimensional data, such as in financial markets, where the number of input features can be very large. SVM's ability to work well in such high-dimensional spaces makes it a valuable tool for stock market prediction, where features such as historical prices, trading volume, and various technical indicators may serve as inputs to the model. However, SVM's effectiveness can be limited by the choice of kernel and the computational complexity associated with training the model, particularly when dealing with large datasets or a high number of support vectors. These challenges highlight the potential for improvement through quantum-enhanced algorithms, which may offer solutions to speed up the training process and improve model performance.
 
 \subsection{Quantum Principal Component Analysis (QPCA)}
-Quantum Principal Component Analysis (QPCA) is an extension of classical PCA that leverages quantum mechanics to accelerate the process of dimensionality reduction. The basic principle behind QPCA is to use quantum superposition and entanglement to perform linear algebra operations in parallel, which can significantly reduce the computational time required to analyze large datasets. While classical PCA typically requires matrix diagonalization, a process that grows increasingly complex as the size of the data increases, QPCA uses quantum states to encode and process the data in a way that allows for exponential speedup under certain conditions.
+Quantum Principal Component Analysis (QPCA) \cite{qpca} is an extension of classical PCA that leverages quantum mechanics to accelerate the process of dimensionality reduction. The basic principle behind QPCA is to use quantum superposition and entanglement to perform linear algebra operations in parallel, which can significantly reduce the computational time required to analyze large datasets. While classical PCA typically requires matrix diagonalization, a process that grows increasingly complex as the size of the data increases, QPCA uses quantum states to encode and process the data in a way that allows for exponential speedup under certain conditions.
 
 In the context of stock market prediction, QPCA holds the potential to analyze large datasets more efficiently than classical PCA. The ability to handle high-dimensional data with quantum speedup could enable quicker identification of key features that influence asset prices, leading to more effective predictive models. However, implementing QPCA in practice remains challenging due to the limited availability of quantum hardware and the need for specialized quantum algorithms that can be applied to real-world financial data. Nonetheless, QPCA represents a promising direction for quantum-enhanced data analysis, with the potential to transform how financial markets are analyzed and predicted.
 
 \subsection{Quantum Support Vector Machines (QSVM)}
-Quantum Support Vector Machines (QSVM) are an adaptation of classical SVM algorithms designed to take advantage of quantum computing's unique capabilities. While traditional SVM relies on kernel functions to map input data into a higher-dimensional space, QSVM utilizes quantum kernels that are based on quantum states, allowing the model to operate in exponentially larger feature spaces. This enables QSVM to capture more complex, nonlinear relationships in data, which is especially important in the context of stock market prediction, where relationships between features can be highly intricate and non-linear.
+Quantum Support Vector Machines (QSVM) \cite{qsvm} are an adaptation of classical SVM algorithms designed to take advantage of quantum computing's unique capabilities. While traditional SVM relies on kernel functions to map input data into a higher-dimensional space, QSVM utilizes quantum kernels that are based on quantum states, allowing the model to operate in exponentially larger feature spaces. This enables QSVM to capture more complex, nonlinear relationships in data, which is especially important in the context of stock market prediction, where relationships between features can be highly intricate and non-linear.
 
 QSVM operates by encoding data into quantum states, applying quantum kernels to calculate the inner products between these states, and then using these results to find the optimal hyperplane for classification or regression tasks. The key advantage of QSVM over classical SVM is the potential for exponential speedup in terms of both the time required for training and the model's ability to handle larger datasets. For stock market prediction, QSVM can be particularly useful in situations where classical algorithms struggle to capture the complexities of market dynamics. However, the practical implementation of QSVM is still in its early stages, and significant challenges remain in terms of developing quantum hardware and algorithms that can handle the scale and noise associated with financial data.
 
@@ -136,7 +136,7 @@ Figure 2 illustrates the absolute prediction errors over time for PCA, SVM, QPCA
 
 \textbf{SVM:} SVM consistently produces large prediction errors, reflecting its struggles to generalize from training data to unseen market conditions. The magnitude and persistence of these errors confirm the model's inadequacy for capturing the dynamic patterns of stock market behavior.
 
-\textit{QPCA:} QPCA demonstrates error behavior that is comparable to SVM. While the errors are not as erratic as those of QSVM, they remain significant and follow a similar pattern to SVM, indicating that QPCA also struggles to generalize effectively and adapt to dynamic market conditions.
+\textbf{QPCA:} QPCA demonstrates error behavior that is comparable to SVM. While the errors are not as erratic as those of QSVM, they remain significant and follow a similar pattern to SVM, indicating that QPCA also struggles to generalize effectively and adapt to dynamic market conditions.
 
 \textbf{QSVM:} QSVM demonstrates erratic and highly variable prediction errors, particularly during periods of market volatility. The model's sensitivity to noise and its computational challenges result in significant deviations from actual values. Consequently, QSVM errors are not only larger but also less predictable compared to the other models.
 
@@ -173,7 +173,7 @@ Similarly, the quantum algorithms, QPCA and QSVM, were evaluated using the same 
         Mean Sqr. Error & 1624.12 & $4.1 \times 10^6$ & $4.6 \times 10^6$ & $5.4 \times 10^6$ \\
         \hline
     \end{tabular}
-    \vspace{1em}
+    \vspace{2.4em}
     \caption{Error metrics for PCA, SVM, QPCA, and QSVM on the S\&P 500 dataset.}
     \label{tab:error_metrics}
 \end{table}
@@ -194,13 +194,24 @@ Each trader type has three variations, based on the percentage of their portfoli
 
 \subsection{Portfolio Value over Time for PCA}
 
-Figure~\ref{fig:pca_trader_portfolio} shows the predicted portfolio value over time for each trader type using the PCA model. The results indicate that the best-performing strategy is the \textbf{Buy and Keep Trader}, as the portfolio steadily increases over time, reflecting the overall upward trend in the market. The 100\% allocation for this trader ensures they capture the full value of the market's growth. Similarly, the \textbf{Remain Value Trader} with a 100\% allocation also sees substantial growth, though the growth rate is slightly lower than that of the Buy and Keep strategy. The 5\% and 20\% variations of this strategy exhibit less dramatic growth, with smaller allocations leading to slower portfolio value accumulation.
+Figure~\ref{fig:pca_trader_portfolio} shows the predicted portfolio value over time for each trader type using the PCA model. The results indicate that the best-performing strategy is the Buy and Keep Trader, as the portfolio steadily increases over time, reflecting the overall upward trend in the market. The 100\% allocation for this trader ensures they capture the full value of the market’s growth.
+
+Similarly, the Remain Value Trader with a 100\% allocation also sees substantial growth, though the growth rate is slightly lower than that of the Buy and Keep strategy. The 5\% and 20\% variations of this strategy exhibit less dramatic growth, with smaller allocations leading to slower portfolio value accumulation.
 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=\linewidth]{pca_traders.png}
     \caption{Predicted portfolio value over time for different trader types using PCA.}
     \label{fig:pca_trader_portfolio}
+\end{figure}
+
+Notably, in the case of individual stocks, such as Nvidia, traders employing the 100\% Remain Value strategy were able to achieve exceptional results, significantly outperforming the index. For example, the portfolio value for Nvidia doubled relative to the overall market trend. This demonstrates that while broader strategies like Buy and Keep capture general market growth, focused approaches on specific high-performing stocks can yield substantial profits.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\linewidth]{pca_nvidia_traders.png}
+    \caption{Predicted portfolio value over time for Nvidia stock across different trader types using the PCA model.}
+    \label{fig:pca_nvidia_trader_portfolio}
 \end{figure}
 
 \subsection{Portfolio Value over Time for SVM, QPCA and QSVM}
@@ -230,6 +241,18 @@ The introduction of quantum algorithms, such as QPCA and QSVM, raises further qu
 These findings suggest that while PCA remains the most effective model for predicting stock prices and simulating trading strategies, the potential of quantum algorithms is not yet fully realized in this domain. The PCA model’s ability to capture market trends translates into better decision-making for traders, especially for strategies such as \textit{Buy and Keep}. This strategy benefits the most from PCA's accuracy in tracking long-term market movements, ensuring consistent growth in portfolio value over time.
 
 \begin{thebibliography}{99}
+
+\bibitem{pca} 
+Jolliffe, I. T. (2002). \textit{Principal Component Analysis}. Springer. \url{https://doi.org/10.1007/b98835}
+
+\bibitem{svm} 
+Cortes, C., \& Vapnik, V. (1995). Support-vector networks. \textit{Machine Learning}, 20(3), 273–297. \url{https://doi.org/10.1007/BF00994018}
+
+\bibitem{qpca} 
+Lloyd, S., Mohseni, M., \& Rebentrost, P. (2014). Quantum principal component analysis. \textit{Nature Physics}, 10, 631–633. \url{https://doi.org/10.1038/nphys3029}
+
+\bibitem{qsvm} 
+Rebentrost, P., Mohseni, M., \& Lloyd, S. (2014). Quantum Support Vector Machine for Big Data Classification. \textit{Physical Review Letters}, 113(13), 130503. \url{https://doi.org/10.1103/PhysRevLett.113.130503}
 
 \bibitem{svm_arxiv} 
 Ray, A., Guddanti, S. S., Ajith, V., \& Vinayagamurthy, D. (2022). \textit{Classical ensemble of Quantum-classical ML algorithms for Phishing detection in Ethereum transaction networks}. arXiv:2211.00004v1. \url{https://arxiv.org/abs/2211.00004}
