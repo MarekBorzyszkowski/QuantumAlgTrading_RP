@@ -1,0 +1,38 @@
+{
+    "component_name": "sp500_CVX",
+    "start_date": "2003-01-01",
+    "end_date": "2024-01-01",
+    "train_data_percent": 0.6666666666666666,
+    "train_data_size": 3523,
+    "test_data_size": 1762,
+    "begin_train_date": "2003-01-02",
+    "end_train_date": "2016-12-28",
+    "begin_test_date": "2016-12-29",
+    "end_test_date": "2023-12-29",
+    "PCA": {
+        "training_time_seconds": 0.006095124001149088,
+        "prediction_time_seconds": 0.9759126890003245,
+        "Max_absolute_error": 13.65371107957074,
+        "Min_absolute_error": -16.192223984865407,
+        "Mean_absolute_error": 0.05114031808839552,
+        "Median_absolute_error": 0.11386571892033714,
+        "Max_relative_error": 0.17697501398043392,
+        "Min_relative_error": -0.2941366808174766,
+        "Mean_relative_error": 0.00012399174944824435,
+        "Median_relative_error": 0.0008651747605783693,
+        "Mean_square_error": 4.939576458924138
+    },
+    "Svm": {
+        "training_time_seconds": 0.05216015800033347,
+        "prediction_time_seconds": 1.2590208709989383,
+        "Max_absolute_error": 103.42547335342937,
+        "Min_absolute_error": -16.779969737316435,
+        "Mean_absolute_error": 16.00971838577068,
+        "Median_absolute_error": 0.9284424291523834,
+        "Max_relative_error": 0.549989214057228,
+        "Min_relative_error": -0.304813261437415,
+        "Mean_relative_error": 0.09712284549000832,
+        "Median_relative_error": 0.008322339941471562,
+        "Mean_square_error": 1087.737046050903
+    }
+}
