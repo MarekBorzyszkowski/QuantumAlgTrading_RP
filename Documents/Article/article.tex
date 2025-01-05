@@ -112,18 +112,17 @@ For classical algorithms, all training and testing were conducted on the local s
 
 \subsection{Predicted Price vs. Actual Price}
 
-Figure 1 illustrates the predicted closing prices of the S\&P 500 index using PCA, SVM, QPCA, and QSVM models compared to the actual values during the test period (2017--2024). The results highlight substantial differences in the predictive accuracy and adaptability of these approaches.
+Figure~\ref{fig:price_comparison} illustrates the predicted closing prices of the S\&P 500 index using PCA, SVM, QPCA, and QSVM models compared to the actual values during the test period (2017--2024). The results highlight substantial differences in the predictive accuracy and adaptability of these approaches.
 
 \textbf{PCA:} The PCA predictions maintain a strong correlation with the true price movements, albeit with a consistent lag of 1--2 days. This delay becomes particularly evident during periods of heightened market volatility, where abrupt price changes cause temporary deviations. However, outside of these volatile phases, PCA exhibits robust accuracy, aligning closely with the true market trends.
 
-\textbf{SVM:} SVM predictions show significant divergence from the actual price trends. The model fails to generalize well, likely due to overfitting during training. Consequently, its predictions deviate erratically, rendering it ineffective for continuous market prediction tasks.
+\textbf{SVM:} SVM predictions show significant divergence from the actual price trends. The model fails to generalize well, likely due to overfitting during training. Consequently, its predictions deviate erratically, rendering it ineffective for continuous market prediction tasks. However, in the case of individual stock predictions (e.g., Meta or Chevron Corp), the SVM model demonstrates the ability to make accurate forecasts as long as the stock trends remain similar to those encountered during training (figure ~\ref{fig:cvx_svm}). Once an unprecedented market trend emerges, the model's performance deteriorates rapidly, highlighting its inability to adapt to new patterns.
 
 \textbf{QPCA:} The QPCA model fails to effectively capture market dynamics, producing predictions that remain largely static over time. This lack of responsiveness results in predictions that do not reflect actual price movements or trends. While the quantum-enhanced approach theoretically offers potential, its current implementation does not provide practical advantages over classical methods, particularly given its substantial computational resource requirements.
 
 \textbf{QSVM:} QSVM predictions exhibit the most considerable deviations among all models. Despite the theoretical advantages of quantum computing, the QSVM struggles with noise and the inherent complexity of financial data. The resulting predictions often fail to align with the overall trend, further amplifying the resource demands of the quantum approach.
 
 The comparison underscores that classical PCA remains the most reliable method among the tested algorithms, while the quantum models (QPCA and QSVM) require further refinement to match their theoretical potential in real-world applications.
-
 
 \begin{figure}[ht!]
     \centering
@@ -132,15 +131,23 @@ The comparison underscores that classical PCA remains the most reliable method a
     \label{fig:price_comparison}
 \end{figure}
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\linewidth]{cvx_svm.png}
+    \caption{Predicted prices vs. actual prices for the Chevron Corp stock.}
+    \label{fig:cvx_svm}
+\end{figure}
+
 \subsection{Prediction Error vs. Time}
 
-Figure 2 illustrates the absolute prediction errors over time for PCA, SVM, QPCA, and QSVM models. The analysis highlights significant differences in the error behavior across the algorithms.
+Figure~\ref{fig:error_comparison} illustrates the absolute prediction errors over time for PCA, SVM, QPCA, and QSVM models. The analysis highlights significant differences in the error behavior across the algorithms.
 
 \textbf{PCA:} PCA exhibits consistently low prediction errors, with occasional spikes during periods of heightened market volatility. These spikes align with sharp deviations in predicted prices, indicating that PCA's sensitivity to sudden market movements contributes to temporary increases in error. Despite these spikes, PCA demonstrates overall reliability, maintaining low errors throughout the test period.
 
-\textbf{SVM:} SVM consistently produces large prediction errors, reflecting its struggles to generalize from training data to unseen market conditions. The magnitude and persistence of these errors confirm the model's inadequacy for capturing the dynamic patterns of stock market behavior.
+\textbf{SVM:} SVM consistently produces large prediction errors, reflecting its struggles to generalize from training data to unseen market conditions. The magnitude and persistence of these errors confirm the model’s inadequacy for capturing the dynamic patterns of stock market behavior. However, for individual stocks, the prediction error was relatively small as long as the stock trends remained consistent with those observed during training. Once the model encountered an unfamiliar market trend, the error increased significantly, further emphasizing its limitations in adapting to new scenarios.
 
-\textbf{QPCA:} QPCA demonstrates error behavior that is comparable to SVM. While the errors are not as erratic as those of QSVM, they remain significant and follow a similar pattern to SVM, indicating that QPCA also struggles to generalize effectively and adapt to dynamic market conditions.
+
+\textbf{QPCA:} QPCA demonstrates error behavior that is comparable to majority of SVM results. While the errors are not as erratic as those of QSVM, they remain significant and follow a similar pattern to SVM, indicating that QPCA also struggles to generalize effectively and adapt to dynamic market conditions.
 
 \textbf{QSVM:} QSVM demonstrates erratic and highly variable prediction errors, particularly during periods of market volatility. The model's sensitivity to noise and its computational challenges result in significant deviations from actual values. Consequently, QSVM errors are not only larger but also less predictable compared to the other models.
 
@@ -156,7 +163,7 @@ The comparison underscores that PCA offers the most consistent and reliable perf
 
 \subsection{Error Metrics}
 
-The performance of PCA and SVM was also evaluated using several error metrics, which are summarized in Table~\ref{tab:error_metrics}. The results confirm the visual observations, with PCA showing significantly lower error values across all metrics, indicating its strong ability to predict the S\&P 500 index's price movements. In contrast, SVM demonstrates large prediction errors, which suggest that it is less effective for this particular application.
+The performance of PCA and SVM was also evaluated using several error metrics, which are summarized in Table I. The results confirm the visual observations, with PCA showing significantly lower error values across all metrics, indicating its strong ability to predict the S\&P 500 index’s price movements. In contrast, SVM demonstrates large prediction errors, which suggest that it is less effective for this particular application. However, SVM is not universally inadequate. For individual stocks with trends closely resembling those observed during training, SVM has shown a reasonable degree of accuracy, successfully capturing price patterns until it encounters previously unseen market trends.
 
 Similarly, the quantum algorithms, QPCA and QSVM, were evaluated using the same error metrics, and the results revealed significant differences in performance compared to the classical algorithms. In the case of QPCA, the error values were much higher than those of classical PCA, suggesting that the quantum algorithm, despite its complexity, does not achieve better prediction accuracy compared to PCA. Similarly, QSVM exhibited large errors, which indicate that the quantum version of SVM is also less effective in predicting S\&P 500 index price movements when compared to both PCA and classical SVM.
 
@@ -177,11 +184,10 @@ Similarly, the quantum algorithms, QPCA and QSVM, were evaluated using the same 
         Mean Sqr. Error & 1624.12 & $4.1 \times 10^6$ & $4.6 \times 10^6$ & $5.4 \times 10^6$ \\
         \hline
     \end{tabular}
-    \vspace{2.4em}
+    \vspace{1em}
     \caption{Error metrics for PCA, SVM, QPCA, and QSVM on the S\&P 500 dataset.}
     \label{tab:error_metrics}
 \end{table}
-
 
 \section{Results for Traders}
 
@@ -189,18 +195,16 @@ Similarly, the quantum algorithms, QPCA and QSVM, were evaluated using the same 
 
 In this part of the analysis, we focus on the performance of different types of traders using both the PCA and SVM models. We differentiate between three types of traders based on their investment strategies: 
 \begin{itemize}
-    \item \textbf{Whole Value Trader}: This trader buys the full value of an asset when the prediction indicates an increase in price.
-    \item \textbf{Remain Value Trader}: This trader buys a portion of the asset value, with the amount being determined by the prediction. 
-    \item \textbf{Buy and Keep Trader}: This trader purchases an asset and holds it for a longer period, regardless of short-term fluctuations.
+    \item \textbf{Whole Value Trader:} This trader operates with a predefined percentage of their total wealth (assets + cash) and buys or sells assets whenever the prediction indicates an opportunity. Specifically, the trader buys assets when the predicted price for the next day is higher than today’s price and sells assets when the predicted price is lower. The amount traded is determined by the predefined percentage of the total wealth.
+    \item \textbf{Remain Value Trader:} This trader operates with a predefined percentage of a specific part of their wealth. When selling, the percentage is applied to the current value of the assets held, and when buying, it is applied to the available cash. The decision to buy or sell is based solely on the prediction signal (indicating an increase or decrease in price), but the quantity of assets traded does not directly depend on the magnitude of the prediction.
+    \item \textbf{Buy and Keep Trader:} This trader adopts a long-term strategy by purchasing assets and holding them over an extended period, regardless of short-term price fluctuations or prediction signals..
 \end{itemize}
 
-Each trader type has three variations, based on the percentage of their portfolio allocated to asset purchases: 5\%, 20\%, and 100\%. The different variations allow for testing how sensitive each strategy is to different levels of investment.
+Each trader type has three variations, based on the percentage of their portfolio involved in each transaction: 5\%, 20\%, and 100\%. These percentages represent the proportion of their assets (or cash) that the trader buys or sells during each trading opportunity. The different variations allow for testing how sensitive each strategy is to varying levels of transactional activity.
 
 \subsection{Portfolio Value over Time for PCA}
 
-Figure~\ref{fig:pca_trader_portfolio} shows the predicted portfolio value over time for each trader type using the PCA model. The results indicate that the best-performing strategy is the Buy and Keep Trader, as the portfolio steadily increases over time, reflecting the overall upward trend in the market. The 100\% allocation for this trader ensures they capture the full value of the market’s growth.
-
-Similarly, the Remain Value Trader with a 100\% allocation also sees substantial growth, though the growth rate is slightly lower than that of the Buy and Keep strategy. The 5\% and 20\% variations of this strategy exhibit less dramatic growth, with smaller allocations leading to slower portfolio value accumulation.
+Figure~\ref{fig:pca_trader_portfolio} shows the predicted portfolio value over time for each trader type using the PCA model. The results indicate that the best-performing strategy is the Buy and Keep Trader, as the portfolio steadily increases over time, reflecting the overall upward trend in the market. For the Remain Value Trader, the 100\% variation -- where the trader buys or sells 100\% of their assets or cash in each transaction -- also sees substantial growth, though the growth rate is slightly lower than that of the Buy and Keep strategy. The 5\% and 20\% variations, where traders execute smaller transactions relative to their assets or cash, exhibit less dramatic growth, with smaller transaction sizes leading to slower portfolio value accumulation.
 
 \begin{figure}[ht!]
     \centering
@@ -218,9 +222,20 @@ Notably, in the case of individual stocks, such as Nvidia, traders employing the
     \label{fig:pca_nvidia_trader_portfolio}
 \end{figure}
 
-\subsection{Portfolio Value over Time for SVM, QPCA and QSVM}
+\subsection{Portfolio Value over Time for SVM}
 
-Unlike the PCA model, rest of the model shows a flat line for all trader types. This outcome is due to the models' predictions being highly erratic and failing to capture meaningful price changes, leading to no buying or selling activity. As a result, the portfolio value remains unchanged throughout the entire test period, reflecting the models' inability to predict price movements effectively.
+Despite its weak performance in predicting the S\&P 500 index, SVM achieved satisfactory results in the case of individual stocks, such as Chevron Corp. In particular, the Remain Value Trader with a 100\% transaction strategy demonstrated notable success (figure~\ref{fig:cvx_svm_traders}), effectively capitalizing on SVM's accurate short-term predictions for this stock.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\linewidth]{cvx_svm_traders.png}
+    \caption{Predicted portfolio value over time for Chevron Corp stock across different trader types using the SVM model.}
+    \label{fig:cvx_svm_traders}
+\end{figure}
+
+\subsection{Portfolio Value over Time for QPCA and QSVM}
+
+Unlike the PCA and SVM models, rest of the models show a flat line for all trader types. This outcome is due to the models' predictions being highly erratic and failing to capture meaningful price changes, leading to no buying or selling activity. As a result, the portfolio value remains unchanged throughout the entire test period, reflecting the models' inability to predict price movements effectively.
 
 \section{Conclusions}
 
@@ -242,7 +257,7 @@ From the results, it is clear that the \textit{Buy and Keep Trader} strategy per
 
 The introduction of quantum algorithms, such as QPCA and QSVM, raises further questions about their potential impact on trader strategy simulations. The results for quantum models show that both QPCA and QSVM struggle to provide reliable predictions, with substantial deviations from actual market trends. As a result, their performance in simulating trader behavior is significantly worse than that of classical models like PCA. While quantum algorithms theoretically offer superior computational power, their current implementations exhibit high sensitivity to noise and other practical challenges, making them less effective for real-world applications in stock market prediction and trading strategy simulation.
 
-These findings suggest that while PCA remains the most effective model for predicting stock prices and simulating trading strategies, the potential of quantum algorithms is not yet fully realized in this domain. The PCA model’s ability to capture market trends translates into better decision-making for traders, especially for strategies such as \textit{Buy and Keep}. This strategy benefits the most from PCA's accuracy in tracking long-term market movements, ensuring consistent growth in portfolio value over time.
+These findings suggest that while PCA remains the most effective model for predicting stock prices and simulating trading strategies, the potential of quantum algorithms is not yet fully realized in this domain. The PCA model’s ability to capture market trends translates into better decision-making for traders, especially for strategies such as Remain Value Trading. This strategy benefits the most from PCA’s accuracy in tracking long-term market movements, ensuring consistent growth in portfolio value over time. However, it is worth noting that SVM occasionally demonstrates strong predictive performance, indicating that it may have untapped potential in certain market conditions or specific scenarios.
 
 \begin{thebibliography}{99}
 
