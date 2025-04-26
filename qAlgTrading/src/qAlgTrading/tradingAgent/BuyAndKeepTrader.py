@@ -1,4 +1,4 @@
-from .Trader import Trader
+from qAlgTrading.tradingAgent.Trader import Trader
 from math import floor
 
 

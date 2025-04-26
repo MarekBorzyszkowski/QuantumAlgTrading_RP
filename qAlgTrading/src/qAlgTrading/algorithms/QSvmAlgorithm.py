@@ -3,16 +3,15 @@ import pickle
 
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVR
+from qiskit_machine_learning.algorithms import QSVR
+from qAlgTrading.algorithms.TradingAlgorithm import TradingAlgorithm
 
-from .TradingAlgorithm import TradingAlgorithm
 
-
-class SvmAlgorithm(TradingAlgorithm):
-    def __init__(self, history_length=5, kernel='rbf'):
+class QSvmAlgorithm(TradingAlgorithm):
+    def __init__(self, history_length=5):
         self.scaler_X = StandardScaler()
         self.scaler_Y = StandardScaler()
-        self.model = SVR(kernel=kernel)
+        self.model = QSVR()
         self.history_data = None
         self.history_length = history_length
 
@@ -50,27 +49,27 @@ class SvmAlgorithm(TradingAlgorithm):
         return self.history_data
 
     def save(self, directory: str):
-        with open(os.path.join(directory, "svm_scaler_x.pkl"), "wb") as f:
+        with open(os.path.join(directory, "qsvm_scaler_x.pkl"), "wb") as f:
             pickle.dump(self.scaler_X, f)
 
-        with open(os.path.join(directory, "svm_scaler_y.pkl"), "wb") as f:
+        with open(os.path.join(directory, "qsvm_scaler_y.pkl"), "wb") as f:
             pickle.dump(self.scaler_Y, f)
 
-        with open(os.path.join(directory, "svm_model.pkl"), "wb") as f:
+        with open(os.path.join(directory, "qsvm_model.pkl"), "wb") as f:
             pickle.dump(self.model, f)
 
     def load(self, directory: str):
-        with open(os.path.join(directory, "svm_scaler_x.pkl"), "rb") as f:
+        with open(os.path.join(directory, "qsvm_scaler_x.pkl"), "rb") as f:
             self.scaler_X = pickle.load(f)
 
-        with open(os.path.join(directory, "svm_scaler_y.pkl"), "rb") as f:
+        with open(os.path.join(directory, "qsvm_scaler_y.pkl"), "rb") as f:
             self.scaler_Y = pickle.load(f)
 
-        with open(os.path.join(directory, "svm_model.pkl"), "rb") as f:
+        with open(os.path.join(directory, "qsvm_model.pkl"), "rb") as f:
             self.model = pickle.load(f)
 
     def name(self):
-        return "Svm"
+        return "QSvm"
 
     def _prepare_features(self, close_prices):
         X = []

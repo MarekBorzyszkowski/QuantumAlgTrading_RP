@@ -3,7 +3,7 @@ import pickle
 
 import numpy as np
 
-from .TradingAlgorithm import TradingAlgorithm
+from qAlgTrading.algorithms.TradingAlgorithm import TradingAlgorithm
 from sklearn.decomposition import KernelPCA
 from sklearn.linear_model import LinearRegression
 from qiskit_machine_learning.kernels import FidelityQuantumKernel

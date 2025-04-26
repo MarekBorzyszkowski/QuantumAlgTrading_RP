@@ -1,6 +1,6 @@
 from tqdm import tqdm
 
-from .Constants import FEATURES
+from qAlgTrading.testingEnviroment.Constants import FEATURES
 
 
 class PredictionPerformer:

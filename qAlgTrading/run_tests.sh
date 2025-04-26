@@ -1,12 +1,12 @@
 #!/bin/bash
-if [ ! -d src/venv ]; then
+if [ ! -d venv ]; then
   echo "venv hasn't been initialized. Running setup.sh"
   ./setup.sh
 fi
-source src/venv/bin/activate
+source venv/bin/activate
 
-#echo "Start of tests S&P"
-#src/venv/bin/python3 src/main.py jsons/S\&P.json
+echo "Start of tests S&P"
+venv/bin/python3 src/main.py jsons/S\&P.json
 #echo "Start of tests wig_20"
 #src/venv/bin/python3 src/main.py jsons/wig_20.json
 #echo "Start of tests NVDA"
@@ -33,11 +33,11 @@ source src/venv/bin/activate
 #src/venv/bin/python3 src/main.py jsons/BAC.json
 #echo "Start of tests BRK-B"
 #src/venv/bin/python3 src/main.py jsons/BRK-B.json
-echo "Start of tests COST"
-src/venv/bin/python3 src/main.py jsons/COST.json
-echo "Start of tests CVX"
-src/venv/bin/python3 src/main.py jsons/CVX.json
-echo "Start of tests HD"
-src/venv/bin/python3 src/main.py jsons/HD.json
+#echo "Start of tests COST"
+#src/venv/bin/python3 src/main.py jsons/COST.json
+#echo "Start of tests CVX"
+#src/venv/bin/python3 src/main.py jsons/CVX.json
+#echo "Start of tests HD"
+#src/venv/bin/python3 src/main.py jsons/HD.json
 echo "End of tests"
 deactivate

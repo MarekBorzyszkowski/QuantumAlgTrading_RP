@@ -6,9 +6,16 @@ import time
 import numpy as np
 import pandas as pd
 
-from algorithms import PcaAlgorithm, SvmAlgorithm, QPcaAlgorithm, QSvmAlgorithm
-from tradingAgent import WholeValueTrader, BuyAndKeepTrader, RemainValueTrader
-from testingEnviroment import PredictionPerformer, ResultPresenter, TraderSimulator
+from qAlgTrading.algorithms.PcaAlgorithm import PcaAlgorithm
+from qAlgTrading.algorithms.QPcaAlgorithm import QPcaAlgorithm
+from qAlgTrading.algorithms.QSvmAlgorithm import QSvmAlgorithm
+from qAlgTrading.algorithms.SvmAlgorithm import SvmAlgorithm
+from qAlgTrading.testingEnviroment.PredictionPerformer import PredictionPerformer
+from qAlgTrading.testingEnviroment.ResultsPresenter import ResultPresenter
+from qAlgTrading.testingEnviroment.TraderSimulator import TraderSimulator
+from qAlgTrading.tradingAgent.BuyAndKeepTrader import BuyAndKeepTrader
+from qAlgTrading.tradingAgent.RemainValueTrader import RemainValueTrader
+from qAlgTrading.tradingAgent.WholeValueTrader import WholeValueTrader
 
 json_file_name = sys.argv[1]
 json_output = {}

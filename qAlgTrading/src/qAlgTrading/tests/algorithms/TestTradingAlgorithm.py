@@ -1,4 +1,4 @@
-from qAlgTrading.src.algorithms.TradingAlgorithm.TradingAlgorithm import TradingAlgorithm
+from qAlgTrading.algorithms.TradingAlgorithm import TradingAlgorithm
 
 
 class TestTradingAlgorithm(TradingAlgorithm):
@@ -8,7 +8,7 @@ class TestTradingAlgorithm(TradingAlgorithm):
     def train(self, historical_data):
         return NotImplemented
 
-    def fit(self, current_data, next_day_data):
+    def fit(self, historical_data):
         return NotImplemented
 
     def history(self):
